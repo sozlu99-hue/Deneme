@@ -1,0 +1,114 @@
+(node:58899) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAP version 13
+# Subtest: A staff invitation is single use and its secrets are absent from the owner list
+ok 1 - A staff invitation is single use and its secrets are absent from the owner list
+  ---
+  duration_ms: 351.359157
+  type: 'test'
+  ...
+# Subtest: An unapproved first device cannot read shop records or make a sale
+ok 2 - An unapproved first device cannot read shop records or make a sale
+  ---
+  duration_ms: 7.155646
+  type: 'test'
+  ...
+# Subtest: Approval checks the current owner and the code on the requested device
+ok 3 - Approval checks the current owner and the code on the requested device
+  ---
+  duration_ms: 5.662702
+  type: 'test'
+  ...
+# Subtest: Sharing a staff login with a second device creates another pending request
+ok 4 - Sharing a staff login with a second device creates another pending request
+  ---
+  duration_ms: 6.741023
+  type: 'test'
+  ...
+# Subtest: A staff token cannot authenticate as OWNER or be used on another device
+ok 5 - A staff token cannot authenticate as OWNER or be used on another device
+  ---
+  duration_ms: 5.58381
+  type: 'test'
+  ...
+# Subtest: Another owner cannot list or approve this owner staff devices
+ok 6 - Another owner cannot list or approve this owner staff devices
+  ---
+  duration_ms: 5.752216
+  type: 'test'
+  ...
+# Subtest: The staff view excludes passwords, costs, customers and detailed past sales
+ok 7 - The staff view excludes passwords, costs, customers and detailed past sales
+  ---
+  duration_ms: 7.149722
+  type: 'test'
+  ...
+# Subtest: An approved staff sale uses server prices and costs and deducts only dough once
+ok 8 - An approved staff sale uses server prices and costs and deducts only dough once
+  ---
+  duration_ms: 12.655209
+  type: 'test'
+  ...
+# Subtest: Staff cannot change a price, overpay, use credit, forge quantity or reuse a sale ID
+ok 9 - Staff cannot change a price, overpay, use credit, forge quantity or reuse a sale ID
+  ---
+  duration_ms: 11.607959
+  type: 'test'
+  ...
+# Subtest: Closing a device stops new sales while its accepted receipt remains verifiable
+ok 10 - Closing a device stops new sales while its accepted receipt remains verifiable
+  ---
+  duration_ms: 9.579478
+  type: 'test'
+  ...
+# Subtest: Closing the whole staff grant blocks all its approved devices
+ok 11 - Closing the whole staff grant blocks all its approved devices
+  ---
+  duration_ms: 5.398573
+  type: 'test'
+  ...
+# Subtest: An expired invitation, expired session and logout cannot grant access
+ok 12 - An expired invitation, expired session and logout cannot grant access
+  ---
+  duration_ms: 5.630573
+  type: 'test'
+  ...
+# Subtest: Persistence failure is never reported as successful staff approval
+ok 13 - Persistence failure is never reported as successful staff approval
+  ---
+  duration_ms: 5.357189
+  type: 'test'
+  ...
+# Subtest: Two approved devices cannot make online sales of the same last dough stock
+ok 14 - Two approved devices cannot make online sales of the same last dough stock
+  ---
+  duration_ms: 14.625574
+  type: 'test'
+  ...
+# Subtest: A new purchase does not change an earlier staff sale cost
+ok 15 - A new purchase does not change an earlier staff sale cost
+  ---
+  duration_ms: 13.920247
+  type: 'test'
+  ...
+# Subtest: A pending staff payment survives reopen and rejects another tab payment
+ok 16 - A pending staff payment survives reopen and rejects another tab payment
+  ---
+  duration_ms: 31.365203
+  type: 'test'
+  ...
+# Subtest: An invalid staff payment response preserves the pending operation and basket
+ok 17 - An invalid staff payment response preserves the pending operation and basket
+  ---
+  duration_ms: 1.985399
+  type: 'test'
+  ...
+1..17
+# tests 17
+# suites 0
+# pass 17
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1106.369503

@@ -1,0 +1,2 @@
+GROUP tests/webview-origin.mjs
+PASS 3 WebView origin checks. The network responses were isolated. This is not an Android device test.

@@ -1,0 +1,9 @@
+GROUP tests/cloud-browser.mjs
+PASS Two independent device sessions use the same owner account and market panel
+PASS A product and stock added on the tablet appear on the phone
+PASS A phone sale has one server receipt, one stock deduction and a frozen cost
+PASS A lost success response resolves by its saved operation ID and does not create a second sale
+PASS An offline checkout stays unconfirmed and does not create a sale after reconnect
+PASS Concurrent device checkouts sell the last stock once and retain past sale costs
+PASS Remember and shared sales survive a phone page reload
+PASS Both tested screen sizes have no page exceptions

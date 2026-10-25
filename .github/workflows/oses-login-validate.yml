@@ -1,0 +1,49 @@
+name: Validate O Ses Phone Password Login
+on:
+  push:
+    branches: [oses-pos-v1]
+    paths:
+      - phone-password-login-patch.js
+      - server.js
+      - .github/workflows/oses-login-validate.yml
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.19.4
+      - run: npm install --no-audit --no-fund
+      - name: Syntax check
+        run: |
+          node --check phone-password-login-patch.js
+          node --check server.js
+      - name: Phone + password and e-mail login smoke test
+        env:
+          JWT_SECRET: ci-oses-login-secret
+          OWNER_EMAIL: owner-ci@oses.local
+          OWNER_PASSWORD: OwnerTest123!
+          PORT: '8788'
+          DB_PATH: /tmp/oses-login-ci.db
+        run: |
+          rm -f /tmp/oses-login-ci.db*
+          npm start > /tmp/oses-server.log 2>&1 &
+          PID=$!
+          trap 'kill $PID 2>/dev/null || true; cat /tmp/oses-server.log' EXIT
+          for i in {1..30}; do
+            curl --fail --silent http://127.0.0.1:8788/health >/tmp/health.json && break
+            sleep 1
+          done
+          grep -q '"ok":true' /tmp/health.json
+          EMAIL_JSON=$(curl --fail --silent -X POST http://127.0.0.1:8788/login -H 'Content-Type: application/json' -d '{"email":"owner-ci@oses.local","password":"OwnerTest123!","deviceKey":"ci-device","buildVariant":"owner"}')
+          test "$(printf '%s' "$EMAIL_JSON" | jq -r '.user.role')" = "OWNER"
+          node --input-type=module -e "import Database from 'better-sqlite3'; const db=new Database('/tmp/oses-login-ci.db'); db.prepare('UPDATE users SET phone=? WHERE email=?').run('+905551112233','owner-ci@oses.local'); db.close();"
+          PHONE_JSON=$(curl --fail --silent -X POST http://127.0.0.1:8788/login -H 'Content-Type: application/json' -d '{"phone":"05551112233","password":"OwnerTest123!","deviceKey":"ci-device","buildVariant":"owner"}')
+          test "$(printf '%s' "$PHONE_JSON" | jq -r '.user.role')" = "OWNER"
+          test -n "$(printf '%s' "$PHONE_JSON" | jq -r '.token')"
+          STATUS=$(curl --silent -o /tmp/bad.json -w '%{http_code}' -X POST http://127.0.0.1:8788/login -H 'Content-Type: application/json' -d '{"phone":"05551112233","password":"wrong","deviceKey":"ci-device","buildVariant":"owner"}')
+          test "$STATUS" = "401"
+          echo "Phone + password login passed."

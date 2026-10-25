@@ -1,0 +1,8 @@
+{
+  "checkedAt": "2026-10-09T08:59:25.956Z",
+  "originalGitBlob": "c0a4cb30c506cfe5f53c29f0af70ba7d0d0c0169",
+  "originalBytes": 5935474,
+  "patchedSha256": "fb76525b7ecd01f342e26273728c3416279c1bc1c8b4cac76ed541b998d83834",
+  "idempotent": true,
+  "localMatchesServerTransformation": true
+}

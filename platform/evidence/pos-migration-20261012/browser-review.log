@@ -1,0 +1,13 @@
+GROUP tests/review-browser.mjs
+PASS The barcode field keeps focus after each scan
+PASS Product additions retain the payment method and credit account
+PASS Two immediate checkout clicks create one sale and one stock deduction
+PASS A completed sale clears the previous payment and credit selection
+PASS A corrupt stock backup is rejected without changing saved records
+PASS Changing panels clears the old basket before it renders the new products
+PASS The basket total equals the sum of rounded sale lines
+PASS Fractional order checkout keeps the displayed total and material balance
+PASS A delayed session refresh cannot restore a logged-out screen
+PASS The customer package rejects a remembered account with the wrong role before API access
+PASS The owner package rejects a remembered account with the wrong role before API access
+PASS The review flows produce no page exceptions

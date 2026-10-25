@@ -1,0 +1,28 @@
+GROUP tests/browser.mjs
+PASS Business registration and optional unchecked consent
+PASS Pending account cannot open a sales panel
+PASS Approved login opens sales with revenue and two tabs
+PASS Keyboard barcode sale updates revenue and product stock
+PASS No sales summary is sent without consent
+PASS Consented synchronization sends totals only
+PASS Backup file includes the correct stock and frozen sale cost
+PASS Cancellation removes net revenue and restores stock
+PASS Cross-business backup restore is rejected
+PASS An old valid backup cannot overwrite a newer shared ledger
+PASS Remember restores direct sales after reload without saving a password
+PASS Sales and settings fit 320px
+PASS Sales and settings fit 390px
+PASS Sales and settings fit 768px
+PASS Sales and settings fit 1024px
+PASS Sales and settings fit 1280px
+PASS Remember and the cancelled sale survive a Chromium process close and reopen
+PASS Consent withdrawal removes stored server summaries
+PASS Logout clears remembered authentication
+PASS Owner private panel reads the existing local data namespace
+PASS Owner sees business approvals and separate license controls
+PASS cafe activation, recipe purchase, order and sale
+PASS restaurant activation, recipe purchase, order and sale
+PASS Remember keeps the last account and selected panel after a forced crash
+PASS Market cancellation remains after a forced Chromium crash and reopening
+PASS No page exceptions during tested browser flows
+{"checks":26,"screens":16}

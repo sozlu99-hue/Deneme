@@ -1,0 +1,70 @@
+/* Approved compact stock and customer collection layout. Keep 8 px corners. */
+.aesd-ledger-content{flex:1;min-height:0;overflow-y:auto;padding:22px 20px;background:var(--canvas);color:var(--ink)}
+.aesd-ledger-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:44px;padding:10px 13px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font-family:inherit;font-size:13px;line-height:1.4;font-weight:600;cursor:pointer}
+.aesd-ledger-button:disabled{opacity:.5;cursor:default}
+.aesd-ledger-button.aesd-ledger-primary{background:var(--brand)!important;border-color:var(--brand)!important;color:#fff!important}
+.aesd-ledger-muted{font-size:12px;line-height:1.5;color:var(--muted)}
+.aesd-stock-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+.aesd-stock-title h1{font-size:24px;line-height:1.2;letter-spacing:-.04em;font-weight:800;margin:0 0 5px}
+.aesd-stock-title p{color:var(--muted);font-size:12px}
+.aesd-stock-policy{color:var(--muted);font-size:12px;line-height:1.6;padding-left:13px;border-left:3px solid var(--brand);margin-bottom:18px;max-width:650px}
+.aesd-stock-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:12px;align-items:start}
+.aesd-stock-card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:15px;min-width:0}
+.aesd-stock-card-head{display:flex;align-items:flex-start;gap:10px}
+.aesd-stock-symbol{display:grid;place-items:center;flex:none;width:34px;height:34px;background:var(--brand-soft);color:var(--brand);border-radius:8px;font-size:22px}
+.aesd-stock-data{flex:1;min-width:0}
+.aesd-stock-data h2{font-size:15px;font-weight:750;overflow-wrap:anywhere;margin:0 0 4px}
+.aesd-stock-amount{font-size:26px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.04em;line-height:1.25;margin:5px 0}
+.aesd-stock-amount small{font-size:13px;font-weight:600;color:var(--muted);letter-spacing:0}
+.aesd-stock-badge{padding:4px 7px;border-radius:6px;white-space:nowrap;background:var(--brand-soft);color:var(--brand);font-size:10px;font-weight:700;flex:none}
+.aesd-stock-badge.aesd-stock-critical{background:var(--danger-soft);color:var(--danger)}
+.aesd-stock-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-top:15px}
+.aesd-stock-actions .aesd-ledger-button{padding:9px 4px}
+.aesd-stock-card-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:13px;border-top:1px solid var(--line);padding-top:8px}
+.aesd-stock-cost{padding:8px 0;min-height:36px;font-size:12px;font-weight:650;color:var(--brand);text-align:left}
+.aesd-stock-options{position:relative;flex:none}
+.aesd-stock-options summary{min-width:40px;min-height:36px;display:grid;place-items:center;list-style:none;cursor:pointer;color:var(--muted)}
+.aesd-stock-options summary::-webkit-details-marker{display:none}
+.aesd-stock-options[open]>div{position:absolute;right:0;top:100%;z-index:10;display:grid;gap:6px;min-width:120px;padding:8px;background:var(--surface);border:1px solid var(--line);border-radius:8px;box-shadow:0 8px 20px #0002}
+.aesd-stock-history{margin-top:22px;border-top:1px solid var(--line);padding-top:15px}
+.aesd-stock-history>summary{font-size:14px;font-weight:700;min-height:44px;cursor:pointer}
+.aesd-stock-history-row{padding:13px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12px}
+.aesd-stock-history-row small{display:block;color:var(--muted);margin-top:3px}
+.aesd-stock-history-row>div:last-child{display:flex;gap:12px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+.aesd-ledger-field{display:block;font-size:12px;font-weight:650;color:var(--muted);margin:15px 0}
+.aesd-ledger-field input,.aesd-ledger-field select{display:block;width:100%;min-height:48px;padding:12px;margin-top:7px;border:1px solid var(--line);border-radius:8px;background:var(--soft);color:var(--ink);font-size:16px;font-weight:400}
+.aesd-stock-form>.aesd-ledger-button,.aesd-collection>.aesd-ledger-button,.aesd-account-detail>.aesd-ledger-button{width:100%;margin-top:12px}
+.aesd-account-totals,.aesd-account-balances{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.aesd-account-totals{margin-bottom:18px}
+.aesd-account-totals>div{padding:14px;background:var(--surface);border:1px solid var(--line);border-radius:8px;min-width:0}
+.aesd-account-totals span,.aesd-account-balances span{display:block;font-size:12px;color:var(--muted)}
+.aesd-account-totals strong{display:block;font-size:23px;font-weight:750;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.aesd-account-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:12px}
+.aesd-account-row{padding:17px;background:var(--surface);border:1px solid var(--line);border-radius:8px;min-width:0}
+.aesd-account-open{display:flex;align-items:center;gap:12px;text-align:left;width:100%;margin-bottom:17px;min-height:44px}
+.aesd-account-open strong{font-size:15px;font-weight:750;overflow-wrap:anywhere}
+.aesd-account-open small{display:block;font-size:12px;color:var(--muted);margin-top:3px}
+.aesd-account-avatar{width:40px;height:40px;display:grid;place-items:center;flex:none;border-radius:50%;background:var(--brand-soft);color:var(--brand);font-size:17px;font-weight:750}
+.aesd-account-balances strong{display:block;font-size:23px;font-weight:750;letter-spacing:-.035em;font-variant-numeric:tabular-nums;overflow-wrap:anywhere;margin-top:3px}
+.aesd-account-balances>div:first-child strong{color:var(--brand)}
+.aesd-account-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+.aesd-account-actions>.aesd-ledger-button{flex:1;min-width:75px;font-size:12px;padding-inline:8px}
+.aesd-account-history{margin-top:24px}
+.aesd-account-history h3{font-size:14px;font-weight:700;margin-bottom:8px}
+.aesd-account-txn{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);font-size:13px}
+.aesd-account-txn>div{min-width:0}
+.aesd-account-txn small{display:block;font-size:11px;line-height:1.5;color:var(--muted);margin-top:4px;overflow-wrap:anywhere}
+.aesd-account-txn>strong{flex:none;font-variant-numeric:tabular-nums}
+.aesd-account-collected{color:var(--brand)}
+.aesd-collection-method>span{font-size:12px;color:var(--muted)}
+.aesd-collection-method>div{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.aesd-collection-method button[aria-pressed=true]{background:var(--brand-soft);border-color:var(--brand);color:var(--brand)}
+.aesd-collection-review{padding:15px;background:var(--soft);border-radius:8px;margin-top:16px}
+.aesd-collection-review p{display:flex;justify-content:space-between;gap:12px;padding:5px 0;font-size:13px;overflow-wrap:anywhere}
+.aesd-collection-error{font-size:12px;color:var(--danger);line-height:1.5;margin-top:12px}
+@media(max-width:380px){.aesd-ledger-content{padding:18px 14px}.aesd-stock-title h1{font-size:22px}.aesd-stock-card{padding:13px}.aesd-stock-amount{font-size:24px}.aesd-account-balances strong,.aesd-account-totals strong{font-size:20px}}
+:root[data-theme=dark] .aesd-ledger-button.aesd-ledger-primary{color:var(--brand-deep)!important}
+.aesd-account-receivable{grid-template-columns:1fr}
+.aesd-account-previous-payable{margin-top:22px;padding:14px;border:1px solid var(--line);border-radius:8px;background:var(--soft);font-size:13px;line-height:1.6}
+.aesd-account-previous-payable h3{font-weight:700;margin-bottom:7px}
+.aesd-account-previous-payable button{margin-top:12px}

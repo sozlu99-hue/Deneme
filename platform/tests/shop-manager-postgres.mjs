@@ -1,0 +1,18 @@
+import test from 'node:test';import assert from 'node:assert/strict';import crypto from 'node:crypto';import {createRequire} from 'node:module';
+import {staffFixture} from './staff-fixture.mjs';import {postgresRepository} from '../server/cloud-repository.mjs';import {createCloud} from '../server/cloud-core.mjs';import {privateStaffSale} from '../server/private-engine.mjs';
+const {Pool}=createRequire(import.meta.url)('pg'),url=process.env.TEST_PG_URL;
+if(!url||!['localhost','127.0.0.1'].includes(new URL(url).hostname))throw Error('An explicit isolated loopback PostgreSQL URL is required.');
+test('PostgreSQL shares one shop scope, serializes manager sales, retains receipts and rejects revoked access',async t=>{
+ const f=await staffFixture();t.after(()=>f.close());const pool=new Pool({connectionString:url,max:4});t.after(()=>pool.end());
+ await f.platform.register({email:'sozlu99@gmail.com',password:'manager-test-password',businessName:'Synthetic existing account',contactName:'Synthetic',module:'market'});
+ const login=await f.platform.login({email:'sozlu99@gmail.com',password:'manager-test-password',deviceId:'pg_manager_device_01'}),manager=f.platform.authenticate(login.token);
+ await f.platform.shop.grant(f.owner,'sozlu99@gmail.com');f.db.prepare('INSERT INTO aesd_account_security(user_id,email_verified_at) VALUES(?,?) ON CONFLICT(user_id) DO UPDATE SET email_verified_at=excluded.email_verified_at').run(manager.user.id,Date.now());
+ await f.platform.shop.requestDevice(manager,'Synthetic PG device');const device=f.platform.shop.list(f.owner)[0];await f.platform.shop.decide(f.owner,{userId:manager.user.id,deviceId:device.deviceId,code:device.code,action:'approve'});
+ const prefix='shop-manager-pg-'+crypto.randomUUID()+':',make=()=>{const repository=postgresRepository(pool);return createCloud({repository:{mode:repository.mode,transact:(scope,module,fn)=>repository.transact(prefix+scope,module,fn),read:(scope,module,since)=>repository.read(prefix+scope,module,since)},authorize:f.platform.authorizePanel,authorizePrivateMutation:f.platform.shop.authorizeMutation});},a=make(),b=make();
+ const seed=structuredClone((await f.cloud.read(f.owner,'private')).state),product=seed.products.find(p=>p.id==='p1');seed.stock.find(s=>s.id==='s1').gram=product.gramUsage;
+ const initial=await a.mutate(f.owner,'private',{kind:'import',operationId:crypto.randomUUID(),data:seed});
+ const bodies=['A','B'].map(suffix=>({kind:'private-state',operationId:crypto.randomUUID(),expectedRevision:initial.revision,data:privateStaffSale(seed,{items:[{productId:product.id,qty:1,price:product.price}],payments:[{method:'Kart',amount:product.price}]},{saleId:'manager-pg-'+suffix,cashier:manager.user.email,date:new Date().toISOString(),deviceId:manager.deviceId,grantId:'test-shop-manager'})}));
+ const outcomes=await Promise.allSettled([a.mutate(manager,'private',bodies[0]),b.mutate(manager,'private',bodies[1])]);assert.equal(outcomes.filter(r=>r.status==='fulfilled').length,1);const won=outcomes.findIndex(r=>r.status==='fulfilled'),reopened=make();assert.equal((await reopened.mutate(manager,'private',bodies[won])).duplicate,true);
+ const state=(await reopened.read(f.owner,'private')).state;assert.equal(state.sales.length,1);assert.equal(state.sales[0].cashier,'sozlu99@gmail.com');assert.equal(state.stock.find(s=>s.id==='s1').gram,0);assert.equal((await reopened.receipt(manager,'private',bodies[won].operationId)).found,true);
+ await f.platform.shop.decide(f.owner,{userId:manager.user.id,action:'disable'});await assert.rejects(reopened.read(manager,'private'),e=>e.status===403);assert.deepEqual((await reopened.read(f.owner,'private')).state,state);
+});

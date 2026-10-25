@@ -1,0 +1,25 @@
+{
+  "name": "aesd-platform",
+  "version": "1.13.1",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "test": "node --experimental-vm-modules --test --test-isolation=none --test-reporter=tap tests/*.test.mjs",
+    "start": "node server/dev-server.mjs",
+    "test:browser": "node tests/run-browser.mjs",
+    "test:private": "node --experimental-vm-modules --test --test-isolation=none legacy-tests/tests/*.test.cjs",
+    "test:native": "node --test --test-isolation=none tests/native-http.mjs"
+  },
+  "dependencies": {
+    "bcryptjs": "3.0.3",
+    "express": "5.2.1"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1",
+    "jsdom": "30.1.2",
+    "fake-indexeddb": "6.2.5"
+  }
+}

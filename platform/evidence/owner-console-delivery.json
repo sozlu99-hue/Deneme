@@ -1,0 +1,53 @@
+{
+  "checkedAt": "2026-10-18T04:06:16.936069+00:00",
+  "webVersion": "1.5.8",
+  "sourceCommit": "2389647969e356d51d7b24f79b2bf00605091124",
+  "backendCommit": "2389647969e356d51d7b24f79b2bf00605091124",
+  "deployId": "dep-dba4a7u1egvs73db2qsg",
+  "deployStatus": "live",
+  "startupHealthAndFourAssetHashesVerified": true,
+  "externalProductionHttpTested": false,
+  "physicalAndroidTested": false,
+  "ownerCustomerMerged": false,
+  "cariChanged": false,
+  "apks": [
+    {
+      "driveUrl": "https://drive.google.com/file/d/10sUlB9DaS2Bem1_kH9SHeyeAvyXRXJiW/view?usp=drivesdk",
+      "driveName": "AESD-SAHIP-v1.5.8.apk",
+      "package": "com.oses.pos",
+      "deliveredVersion": "1.5.8",
+      "deliveredVersionCode": 158,
+      "sha256": "67a4fb559421f9003a61c3bb05cb40b4a21fc385d36b6b7a02d277a96cd37cac",
+      "bytes": 7771164,
+      "certificateSha256": "ccc5e236fd30d0a395d49121bf1129a905a0ccf9fc952242eb920c8a8e04e2d9",
+      "signatureSchemes": [
+        1,
+        2,
+        3
+      ],
+      "zipaligned": true,
+      "driveDownloadSha256Matched": true,
+      "parentsPreserved": true,
+      "permissionsPreserved": true
+    },
+    {
+      "driveUrl": "https://drive.google.com/file/d/1U_abIPFs79QfiarGxTf5fzbbndr10Yni/view?usp=drivesdk",
+      "driveName": "AESD-MUSTERI.apk",
+      "package": "com.aesd.pos",
+      "deliveredVersion": "1.5.8",
+      "deliveredVersionCode": 158,
+      "sha256": "c6ae22e47c8a9b78b24b70d409a1eeed9d951bfd2093174594c73bfc26ed12aa",
+      "bytes": 3358931,
+      "certificateSha256": "ccc5e236fd30d0a395d49121bf1129a905a0ccf9fc952242eb920c8a8e04e2d9",
+      "signatureSchemes": [
+        1,
+        2,
+        3
+      ],
+      "zipaligned": true,
+      "driveDownloadSha256Matched": true,
+      "parentsPreserved": true,
+      "permissionsPreserved": true
+    }
+  ]
+}

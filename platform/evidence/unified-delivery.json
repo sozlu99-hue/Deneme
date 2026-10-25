@@ -1,0 +1,108 @@
+{
+  "checkedAt": "2026-10-18T09:07:03.002092+00:00",
+  "status": "delivered_and_drive_download_verified",
+  "webVersion": "1.6.0",
+  "sourceCommit": "d95889b2153115f75683cfdf8994e261162002b4",
+  "backendCommit": "d95889b2153115f75683cfdf8994e261162002b4",
+  "deployId": "dep-dba8mte1egvs73de6omg",
+  "deployStatus": "live",
+  "webUrl": "https://aesd-server.onrender.com/aesd/",
+  "startupHealthAndAssetHashesVerified": true,
+  "startupAssetCount": 11,
+  "designatedAdministrator": {
+    "email": "ozlusuat7@gmail.com",
+    "exists": true,
+    "active": true,
+    "owner": true
+  },
+  "productionExternalHttpTested": false,
+  "singleApplication": true,
+  "cariChanged": false,
+  "apks": [
+    {
+      "driveId": "10sUlB9DaS2Bem1_kH9SHeyeAvyXRXJiW",
+      "driveUrl": "https://drive.google.com/file/d/10sUlB9DaS2Bem1_kH9SHeyeAvyXRXJiW/view?usp=drivesdk",
+      "driveName": "AESD-v1.6.0.apk",
+      "appName": "AESD",
+      "roleAudience": "all",
+      "package": "com.oses.pos",
+      "deliveredVersion": "1.6.0",
+      "deliveredVersionCode": 160,
+      "sourceCommit": "d95889b2153115f75683cfdf8994e261162002b4",
+      "backendCommit": "d95889b2153115f75683cfdf8994e261162002b4",
+      "localSignedFile": "/workspace/aesd-delivery/unified-20261018/signed/AESD-v1.6.0.apk",
+      "localDownloadedFile": "/workspace/attachments/8f840c4b-c0b6-47bd-b831-0914af753009/AESD-v1.6.0.apk",
+      "sha256": "bb60698b782be66555b246ad83e7d74e97b629e3583c0ef0b3a7c9263e8ab816",
+      "bytes": 6625902,
+      "certificateSha256": "ccc5e236fd30d0a395d49121bf1129a905a0ccf9fc952242eb920c8a8e04e2d9",
+      "signatureSchemes": [
+        1,
+        2,
+        3
+      ],
+      "zipaligned": true,
+      "driveDownloadSha256Matched": true,
+      "parentsPreserved": true,
+      "permissionsPreserved": true,
+      "realAndroidTested": false
+    }
+  ],
+  "retiredCustomerApkRebuilt": false,
+  "tests": {
+    "platformPassed": 237,
+    "privatePassed": 5,
+    "rootPassed": 5,
+    "recoveryPassed": 16,
+    "nativeSqliteHttpPassed": 1,
+    "totalPassed": 264,
+    "rootPostgresSkipped": 3
+  },
+  "browserChecksPassed": 132,
+  "apkPackagingChecksPassed": 18,
+  "physicalAndroidTested": false,
+  "physicalIPhoneTested": false,
+  "externalProviderConnectionsTested": false,
+  "remaining": [
+    "ÖKC/yazarkasa modeli, e-Fatura sağlayıcısı ve dış sipariş platformu seçimi.",
+    "Seçilen sağlayıcı için gerçek adaptör ve sağlayıcı kabul testi.",
+    "Gerçek Android/iPhone, kamera, yazıcı, dosya paylaşımı ve varsa terazi kabul testi."
+  ],
+  "modules": [
+    {
+      "id": 1,
+      "name": "Hesap ve erişim",
+      "internalStatus": "completed",
+      "externalProviderStatus": "not_applicable"
+    },
+    {
+      "id": 2,
+      "name": "Satış ve kasa",
+      "internalStatus": "completed",
+      "externalProviderStatus": "not_configured"
+    },
+    {
+      "id": 3,
+      "name": "Masa, mutfak ve QR sipariş",
+      "internalStatus": "completed",
+      "externalProviderStatus": "not_configured"
+    },
+    {
+      "id": 4,
+      "name": "Stok ve tedarik",
+      "internalStatus": "completed",
+      "externalProviderStatus": "not_applicable"
+    },
+    {
+      "id": 5,
+      "name": "Cari ve finans",
+      "internalStatus": "completed",
+      "externalProviderStatus": "not_configured"
+    },
+    {
+      "id": 6,
+      "name": "Görünüm ve dağıtım",
+      "internalStatus": "completed",
+      "externalProviderStatus": "not_applicable"
+    }
+  ]
+}

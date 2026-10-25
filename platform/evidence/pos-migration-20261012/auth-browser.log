@@ -1,0 +1,16 @@
+GROUP tests/auth-browser.mjs
+PASS HTML success response is rejected without a session or a role exception
+PASS Broken JSON response is rejected without a session or a role exception
+PASS Missing user response is rejected without a session or a role exception
+PASS Null user response is rejected without a session or a role exception
+PASS False success response is rejected without a session or a role exception
+PASS An undeployed API shows a clear Turkish error
+PASS The recovery form requests a persisted challenge with an isolated mail provider
+PASS An existing emailed code can be entered without requesting another message
+PASS Different new passwords are rejected in the recovery dialog
+PASS Wrong codes show an error inside the recovery dialog
+PASS A valid code changes the password and returns to login
+PASS Password recovery revokes the remembered server session
+PASS The old password no longer works
+PASS The new password works and retains the pending business state
+PASS No page exception in the tested authentication and reset flows

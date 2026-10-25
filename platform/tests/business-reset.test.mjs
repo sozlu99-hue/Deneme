@@ -1,0 +1,82 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import crypto from 'node:crypto';
+import {staffFixture} from './staff-fixture.mjs';
+import {createBusinessReset} from '../server/business-reset.mjs';
+import {createCloud} from '../server/cloud-core.mjs';
+import {emptyState} from '../web/pos.js';
+import {openPrivateOfflineStore} from '../web/private-offline-store.js';
+import {cloudMeta,openCloudStore} from '../web/cloud-store.js';
+import {IDBFactory} from 'fake-indexeddb';
+const op=(kind,data,extra={})=>({kind,data,operationId:crypto.randomUUID(),...extra});
+async function fixture(t){const f=await staffFixture();t.after(()=>f.close());let elapsed=0;f.reset=createBusinessReset({...f,clock:()=>Date.now()+elapsed});f.advanceReset=n=>elapsed+=n;return f;}
+const body=ticket=>({token:ticket.token,password:'owner-test-password',confirmation:'SIFIRLA',backupAcknowledged:true});
+test('Reset private shop requires backup, exact confirmation and current server password; preserves account and access data',async t=>{
+ const f=await fixture(t),before=await f.cloud.read(f.owner,'private');const account=f.db.prepare('SELECT * FROM users').all(),grants=f.access.list(f.owner);
+ const ticket=await f.reset.prepare(f.owner,'private');assert.deepEqual(ticket.backup.state,before.state);
+ for(const edit of [{backupAcknowledged:false},{confirmation:'sil'},{password:'wrong-password'}]){await assert.rejects(f.reset.confirm(f.owner,'private',{...body(ticket),...edit}));assert.deepEqual((await f.cloud.read(f.owner,'private')).state,before.state);}
+ const reset=await f.reset.confirm(f.owner,'private',body(ticket));assert.equal(reset.revision,before.revision+1);const after=await f.cloud.read(f.owner,'private');for(const key of ['products','customers','stock','stockMoves','sales','orders','registerSessions','cashMoves','deletedStockIds'])assert.deepEqual(after.state[key],[]);assert.equal(after.state.orderCounter,1);assert.equal(after.state.activeRegisterId,null);assert.deepEqual(after.state.settings,before.state.settings);assert.deepEqual(after.state.staff,before.state.staff);assert.deepEqual(f.db.prepare('SELECT * FROM users').all(),account);assert.deepEqual(f.access.list(f.owner),grants);
+ const retry=await f.reset.confirm(f.owner,'private',body(ticket));assert.equal(retry.duplicate,true);assert.equal(retry.revision,reset.revision);
+});
+test('Reset tickets reject another session, module, client/delegate role and expiry',async t=>{
+ const f=await fixture(t),ticket=await f.reset.prepare(f.owner,'private');
+ const second=f.platform.authenticate((await f.platform.login({email:'owner@example.test',password:'owner-test-password',deviceId:'reset_second_device_001'})).token);
+ await assert.rejects(f.reset.confirm(second,'private',body(ticket)),/sona erdi/);await assert.rejects(f.reset.confirm(f.owner,'market',body(ticket)),/sona erdi/);
+ await f.platform.register({email:'reset-client@example.test',password:'client-test-password',businessName:'Client',contactName:'Client',module:'market'});const client=f.platform.authenticate((await f.platform.login({email:'reset-client@example.test',password:'client-test-password',deviceId:'reset_client_device_001'})).token);
+ await assert.rejects(f.reset.prepare(client,'private'),/sistem sahibine/);await assert.rejects(f.reset.confirm(client,'private',body(ticket)),/sistem sahibine/);
+ f.advanceReset(600001);await assert.rejects(f.reset.confirm(f.owner,'private',body(ticket)),/sona erdi/);
+});
+test('Changed snapshot and concurrent confirmations never erase a later write or reset twice',async t=>{
+ const f=await fixture(t);await f.cloud.mutate(f.owner,'market',op('import',emptyState('owner:1','market')));const ticket=await f.reset.prepare(f.owner,'market');
+ await f.cloud.mutate(f.owner,'market',op('command',{type:'customer',name:'Later customer'}));await assert.rejects(f.reset.confirm(f.owner,'market',body(ticket)),/kayıtlar değişti/);assert.equal((await f.cloud.read(f.owner,'market')).state.customers.length,1);
+ const next=await f.reset.prepare(f.owner,'market'),results=await Promise.all([f.reset.confirm(f.owner,'market',body(next)),f.reset.confirm(f.owner,'market',body(next))]);assert.equal(results.filter(r=>r.duplicate).length,1);assert.equal(results[0].revision,results[1].revision);
+});
+test('Durable barrier rejects old commands, imports and snapshots; receipts and other panels remain intact',async t=>{
+ const f=await fixture(t);await f.cloud.mutate(f.owner,'market',op('import',emptyState('owner:1','market')));const old=op('command',{type:'customer',name:'Old customer'});await f.cloud.mutate(f.owner,'market',old);const marketBefore=await f.cloud.read(f.owner,'market'),privateBefore=await f.cloud.read(f.owner,'private');const ticket=await f.reset.prepare(f.owner,'market');await f.reset.confirm(f.owner,'market',body(ticket));
+ const restarted=createCloud({repository:f.repository,authorize:f.platform.authorizePanel});await assert.rejects(restarted.mutate(f.owner,'market',op('command',{type:'customer',name:'Stale'},{expectedRevision:marketBefore.revision})),/sıfırlandı/);await assert.rejects(restarted.mutate(f.owner,'market',op('import',marketBefore.state)),/sıfırlandı/);await assert.rejects(restarted.mutate(f.owner,'market',{...op('command',{type:'customer',name:'Forged'}),operationId:'reset_forged_receipt_identifier'}),/işlem kimliği/);
+ assert.equal((await restarted.mutate(f.owner,'market',old)).duplicate,true);assert.deepEqual((await restarted.read(f.owner,'private')).state,privateBefore.state);const fresh=await restarted.read(f.owner,'market');const added=await restarted.mutate(f.owner,'market',op('command',{type:'customer',name:'New start'},{expectedRevision:fresh.revision}));assert.equal(added.state.customers.length,1);
+ const pt=await f.reset.prepare(f.owner,'private');await f.reset.confirm(f.owner,'private',body(pt));await assert.rejects(restarted.mutate(f.owner,'private',op('private-state',privateBefore.state,{expectedRevision:privateBefore.revision})),/sıfırlandı/);
+});
+test('Password brute force is bounded and rejected attempts preserve all financial state',async t=>{
+ const f=await fixture(t),ticket=await f.reset.prepare(f.owner,'private'),before=await f.cloud.read(f.owner,'private');for(let n=0;n<5;n++)await assert.rejects(f.reset.confirm(f.owner,'private',{...body(ticket),password:'wrong-password'}),/doğrulanmadı/);await assert.rejects(f.reset.confirm(f.owner,'private',body(ticket)),e=>e.status===429);assert.deepEqual((await f.cloud.read(f.owner,'private')).state,before.state);
+});
+test('Reset blocks old signed offline permits and archives unsubmitted device payments without replay',async t=>{
+ const f=await fixture(t);globalThis.indexedDB=new IDBFactory();const cloud=createCloud({repository:f.repository,authorize:f.platform.authorizePanel,signOffline:f.platform.signOffline,verifyOffline:f.platform.verifyOffline});const before=await cloud.read(f.owner,'private');
+ const ticket=await f.reset.prepare(f.owner,'private');await f.reset.confirm(f.owner,'private',body(ticket));
+ await assert.rejects(cloud.mutate(f.owner,'private',op('offline-private-sale',{permit:before.offlinePermit,base:before.state,event:{}})),/sıfırlandı/);
+ const queue=[{operationId:crypto.randomUUID(),contextId:'old-context',event:{sale:{id:'unsubmitted-sale'}}}];
+ await cloudMeta('owner:1:private:offline-v1',{schema:1,queue,contexts:{'old-context':{permit:before.offlinePermit,base:before.state}},localVersion:1,revision:before.revision,base:before.state,visible:before.state,permit:before.offlinePermit});
+ const api=async(path,body)=>{assert.equal(body,undefined,'Old queued payment must not be sent');return cloud.read(f.owner,'private');};const store=await openPrivateOfflineStore({businessId:'owner:1',deviceId:f.owner.deviceId,publicKey:f.platform.publicKey,api,permission:()=>true});t.after(()=>store.close());const result=await store.initialize(before.state);assert.deepEqual(result.sales,[]);assert.equal(store.details().count,0);assert.equal(store.details().resetArchiveCount,1);const saved=await store.pendingBackup();assert.deepEqual(saved.resetArchives[0].queue,queue);assert.deepEqual(saved.resetArchives[0].contexts['old-context'].base,before.state);
+});
+
+test('SQLite transaction failure rolls back reset state and receipt together',async t=>{
+ const f=await fixture(t),before=await f.cloud.read(f.owner,'private');const repository={...f.repository,transact:(scope,module,fn)=>f.repository.transact(scope,module,tx=>fn({...tx,save:async(...args)=>{await tx.save(...args);throw Error('Injected SQL failure');}}))};const reset=createBusinessReset({...f,repository});const ticket=await reset.prepare(f.owner,'private');await assert.rejects(reset.confirm(f.owner,'private',body(ticket)),/Injected SQL failure/);const after=await f.cloud.read(f.owner,'private');assert.equal(after.revision,before.revision);assert.deepEqual(after.state,before.state);assert.equal((await f.cloud.receipt(f.owner,'private','reset_'+ticket.token)).found,false);
+});
+test('Linked shop manager cannot reset the owner ledger, even with a captured owner ticket',async t=>{
+ const f=await fixture(t);await f.platform.register({email:'aesd-reset-manager-test@gmail.com',password:'manager-test-password',businessName:'Manager',contactName:'Manager',module:'market'});await f.platform.shop.grant(f.owner,'aesd-reset-manager-test@gmail.com');const login=await f.platform.login({email:'aesd-reset-manager-test@gmail.com',password:'manager-test-password',deviceId:'reset_manager_device_01'}),manager=f.platform.authenticate(login.token);const ticket=await f.reset.prepare(f.owner,'private');await assert.rejects(f.reset.prepare(manager,'private'),e=>e.status===403);await assert.rejects(f.reset.confirm(manager,'private',body(ticket)),e=>e.status===403);assert.equal((await f.cloud.read(f.owner,'private')).revision,ticket.revision);
+});
+test('Reset fails closed after logout or password rotation, and a restarted service expires its tickets',async t=>{
+ const f=await fixture(t),ticket=await f.reset.prepare(f.owner,'private');const restarted=createBusinessReset({...f});await assert.rejects(restarted.confirm(f.owner,'private',body(ticket)),/sona erdi/);f.db.prepare('UPDATE users SET password_hash=? WHERE id=?').run('isolated-hash:rotated-test-password',f.owner.user.id);await assert.rejects(f.reset.confirm(f.owner,'private',body(ticket)),e=>e.status===401);f.db.prepare('UPDATE users SET password_hash=? WHERE id=?').run('isolated-hash:owner-test-password',f.owner.user.id);await f.platform.logout(f.owner);await assert.rejects(f.reset.confirm(f.owner,'private',body(ticket)),e=>e.status===401);
+});
+
+test('Unresolved external payment or fiscal operation blocks reset; provider and security history is retained',async t=>{
+ const f=await fixture(t),ticket=await f.reset.prepare(f.owner,'private');f.db.exec("CREATE TABLE aesd_integration_operations(id TEXT,business_id TEXT,module TEXT,state TEXT)");f.db.prepare('INSERT INTO aesd_integration_operations VALUES(?,?,?,?)').run('pending-provider','owner:1','private','unknown');await assert.rejects(f.reset.prepare(f.owner,'private'),/sağlayıcı/);await assert.rejects(f.reset.confirm(f.owner,'private',body(ticket)),/sağlayıcı/);f.db.prepare("UPDATE aesd_integration_operations SET state='confirmed'").run();await f.reset.confirm(f.owner,'private',body(ticket));assert.equal(f.db.prepare('SELECT state FROM aesd_integration_operations').get().state,'confirmed');
+});
+test('Reset HTTP endpoints reject unauthenticated and client requests and never accept a caller-supplied foreign scope',async t=>{
+ const f=await fixture(t),{default:express}=await import('express'),{installPlatform}=await import('../server/install-platform.mjs');const app=express();app.use(express.json());installPlatform(app,{db:f.db,passwords:f.passwords,secret:'isolated-reset-http-test-secret-only',persist:async()=>{},ready:()=>true,cloudRepository:f.repository});
+ const server=await new Promise(resolve=>{const s=app.listen(0,'127.0.0.1',()=>resolve(s));});t.after(()=>new Promise(resolve=>server.close(resolve)));const origin='http://127.0.0.1:'+server.address().port;
+ const request=async(path,data,token)=>{const response=await fetch(origin+'/aesd/v1'+path,{method:'POST',headers:{'Content-Type':'application/json',...(token?{Authorization:'Bearer '+token}:{})},body:JSON.stringify(data)});return{response,data:await response.json()};};
+ const owner=await request('/login',{email:'owner@example.test',password:'owner-test-password',deviceId:'reset_http_owner_device_01'});assert.equal(owner.response.status,200);
+ const guest=await request('/business-reset/private/prepare',{});assert.equal(guest.response.status,401);assert.equal(guest.response.headers.get('cache-control'),'no-store');
+ await request('/register',{email:'http-reset@example.test',password:'client-test-password',businessName:'Client',contactName:'Client',module:'market'});const client=await request('/login',{email:'http-reset@example.test',password:'client-test-password',deviceId:'reset_http_client_device_01'});const denied=await request('/business-reset/private/prepare',{},client.data.token);assert.equal(denied.response.status,403);assert.equal('backup' in denied.data,false);
+ const prepared=await request('/business-reset/private/prepare',{scope:'owner:999'},owner.data.token);assert.equal(prepared.response.status,200);assert.equal(prepared.data.backup.scope,'owner:1');const wrong=await request('/business-reset/private/confirm',{...body(prepared.data),password:'wrong-password'},owner.data.token);assert.equal(wrong.response.status,422);assert.equal('state' in wrong.data,false);assert.equal((await f.cloud.read(f.owner,'private')).revision,prepared.data.revision);
+});
+test('A pre-reset legacy pending private mutation is archived and cannot trap the device in an endless replay',async t=>{
+ const f=await fixture(t);globalThis.indexedDB=new IDBFactory();const cloud=createCloud({repository:f.repository,authorize:f.platform.authorizePanel,signOffline:f.platform.signOffline,verifyOffline:f.platform.verifyOffline});const before=await cloud.read(f.owner,'private'),pending=op('private-state',before.state,{expectedRevision:before.revision});await cloudMeta('owner:1:private:pending',pending);const ticket=await f.reset.prepare(f.owner,'private');await f.reset.confirm(f.owner,'private',body(ticket));
+ const api=async(path,body)=>{assert.equal(body,undefined);return path.includes('/operations/')?cloud.receipt(f.owner,'private',pending.operationId):cloud.read(f.owner,'private');};const store=await openPrivateOfflineStore({businessId:'owner:1',deviceId:f.owner.deviceId,publicKey:f.platform.publicKey,api,permission:()=>true});t.after(()=>store.close());await store.initialize(before.state);assert.equal(await cloudMeta('owner:1:private:pending'),null);assert.deepEqual((await store.pendingBackup()).resetArchives[0].legacyPending,pending);assert.deepEqual((await store.read()).products,[]);assert.equal(store.details().resetArchiveCount,1);
+});
+
+test('A pre-reset generic pending command is exported intact and is never reported as a confirmed new sale',async t=>{
+ const f=await fixture(t);globalThis.indexedDB=new IDBFactory();await f.cloud.mutate(f.owner,'market',op('import',emptyState('owner:1','market')));const before=await f.cloud.mutate(f.owner,'market',op('command',{type:'customer',name:'Before reset'}));
+ const api=async(path,body)=>{assert.equal(body,undefined);return path.includes('/operations/')?f.cloud.receipt(f.owner,'market',path.split('/').at(-1)):f.cloud.read(f.owner,'market');};const open=onRecovered=>openCloudStore({businessId:'owner:1',module:'market',api,onRecovered,chooseMigration:async()=> 'server'});const first=await open(()=>{});await first.initialize();first.close();const pending=op('command',{type:'sale',id:crypto.randomUUID(),lines:[],payment:'cash'},{expectedRevision:before.revision});await cloudMeta('owner:1:market:pending',pending);const ticket=await f.reset.prepare(f.owner,'market');await f.reset.confirm(f.owner,'market',body(ticket));const recovered=[];const reopened=await open(value=>recovered.push(value));t.after(()=>reopened.close());assert.deepEqual((await reopened.initialize()).sales,[]);const backup=await reopened.backup();assert.deepEqual(backup.pending,pending);assert.deepEqual(backup.data,before.state);assert.equal(await cloudMeta('owner:1:market:pending'),null);assert.equal(recovered.length,1);assert.equal(recovered[0].resetRejected,true);
+});

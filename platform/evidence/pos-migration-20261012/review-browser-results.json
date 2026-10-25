@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "checks": [
+    "The barcode field keeps focus after each scan",
+    "Product additions retain the payment method and credit account",
+    "Two immediate checkout clicks create one sale and one stock deduction",
+    "A completed sale clears the previous payment and credit selection",
+    "A corrupt stock backup is rejected without changing saved records",
+    "Changing panels clears the old basket before it renders the new products",
+    "The basket total equals the sum of rounded sale lines",
+    "Fractional order checkout keeps the displayed total and material balance",
+    "A delayed session refresh cannot restore a logged-out screen",
+    "The customer package rejects a remembered account with the wrong role before API access",
+    "The owner package rejects a remembered account with the wrong role before API access",
+    "The review flows produce no page exceptions"
+  ],
+  "checksCount": 12,
+  "pageErrors": [],
+  "android": false,
+  "realEmail": false
+}

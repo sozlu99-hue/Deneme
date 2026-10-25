@@ -1,0 +1,35 @@
+{
+  "checkedAt": "2026-10-19T07:35:00.000Z",
+  "release": "1.6.1",
+  "versionCode": 161,
+  "package": "com.oses.pos",
+  "writing": "ASD-STE100 writing principles; no certification claim",
+  "perfectionClaim": false,
+  "sourceCommitPendingPush": true,
+  "platformUnitTestsPassed": 242,
+  "apkPackagingChecksPassed": 18,
+  "webIconChecksPassed": 11,
+  "signedApkBuilt": false,
+  "signedApkUploaded": false,
+  "signingFilesPresent": false,
+  "signingBlockReason": "Original keystore path /workspace/aesd-private-signing and /workspace/oses-v151/private-release are not mounted in this environment. Unsigned packages are not uploaded.",
+  "driveApkFileId": "10sUlB9DaS2Bem1_kH9SHeyeAvyXRXJiW",
+  "driveApkUrl": "https://drive.google.com/file/d/10sUlB9DaS2Bem1_kH9SHeyeAvyXRXJiW/view?usp=drivesdk",
+  "driveApkCurrentDeliveredVersion": "1.6.0",
+  "webUrl": "https://aesd-server.onrender.com/aesd/",
+  "modules": [
+    {"id": 1, "name": "Account and access", "internalStatus": "completed", "fixedIn161": ["google_fetch_timeout", "recovery_privacy", "recovery_rate_limit", "login_ip_lock", "private_pos_error_sanitise", "sms_fetch_timeout"], "externalProviderStatus": "sms_optional"},
+    {"id": 2, "name": "Sales and cash", "internalStatus": "completed", "fixedIn161": [], "externalProviderStatus": "not_configured"},
+    {"id": 3, "name": "Floor and orders", "internalStatus": "completed", "fixedIn161": [], "externalProviderStatus": "not_configured"},
+    {"id": 4, "name": "Stock and supply", "internalStatus": "completed", "fixedIn161": [], "externalProviderStatus": "not_applicable"},
+    {"id": 5, "name": "Receivables and finance", "internalStatus": "completed", "fixedIn161": [], "externalProviderStatus": "not_configured"},
+    {"id": 6, "name": "Appearance and distribution", "internalStatus": "completed_in_source", "fixedIn161": ["icon_192", "icon_maskable", "manifests", "sw_cache", "apk_asset_set"], "externalProviderStatus": "signed_drive_upload_blocked_without_keystore"}
+  ],
+  "remaining": [
+    "Mount original signing files and rebuild AESD-v1.6.1.apk with certificate ccc5e236…e2d9.",
+    "Update Drive file 10sUlB9DaS2Bem1_kH9SHeyeAvyXRXJiW in place and verify download SHA-256.",
+    "Deploy web 1.6.1 so live icons return 200.",
+    "Select ÖKC, e-invoice and order-platform vendors; connect real adapters.",
+    "Physical Android update and iPhone install acceptance."
+  ]
+}

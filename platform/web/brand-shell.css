@@ -1,0 +1,430 @@
+/* Brand shell: auth first viewport, type, install dock, motion. Loaded after styles.css. */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap');
+
+:root{
+  font-family:Manrope,ui-sans-serif,system-ui,sans-serif;
+  font-size:15px;
+  line-height:1.5;
+  color:var(--ink);
+  background:var(--canvas);
+  --panel:var(--surface);
+  --line:var(--line);
+  --muted:var(--muted);
+  --red:var(--danger);
+  --green:var(--brand);
+}
+*{box-sizing:border-box}
+body{margin:0;min-height:100dvh;background:var(--canvas);color:var(--ink)}
+button,input,select,textarea{font:inherit}
+.brand{letter-spacing:.08em;font-weight:800;color:var(--ink)}
+.brand em{font-style:normal;color:var(--brand)}
+.primary{font-weight:700;box-shadow:0 8px 18px color-mix(in srgb,var(--brand) 26%,transparent)}
+.primary:hover{filter:brightness(.96)}
+.tabs .tab-active{box-shadow:0 4px 12px color-mix(in srgb,var(--brand) 25%,transparent)}
+.product-plus{background:var(--brand)!important}
+.contact{color:var(--muted)}
+
+/* Auth: one brand-led composition */
+.auth-shell{
+  min-height:100dvh;
+  display:grid;
+  place-items:center;
+  padding:28px 16px 96px;
+  background:
+    radial-gradient(90% 70% at 50% -15%,color-mix(in srgb,var(--brand) 28%,transparent) 0%,transparent 58%),
+    linear-gradient(180deg,#f3faf5 0%,var(--canvas) 42%,#e7efe9 100%);
+}
+.auth{
+  width:min(440px,100%);
+  margin:0;
+  padding:0;
+  animation:aesd-auth-in .55s ease both;
+}
+.auth-mark{
+  display:grid;
+  justify-items:center;
+  gap:14px;
+  margin-bottom:22px;
+  text-align:center;
+}
+.auth-mark img{
+  width:88px;
+  height:88px;
+  border-radius:22px;
+  box-shadow:0 18px 40px color-mix(in srgb,var(--brand) 28%,transparent);
+}
+.auth .brand{font-size:42px;margin:0;letter-spacing:.12em}
+.auth .tagline{margin:0;font-size:15px;color:var(--muted);max-width:28ch}
+.auth .card{
+  border:0;
+  border-radius:28px;
+  padding:28px 26px;
+  box-shadow:0 24px 60px color-mix(in srgb,#0b2a18 12%,transparent);
+  background:color-mix(in srgb,var(--surface) 92%,transparent);
+  backdrop-filter:blur(10px);
+}
+.auth .card h1{font-size:24px;letter-spacing:-.02em;margin-bottom:6px}
+.auth .sector{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px;
+  margin:18px 0 10px;
+}
+.auth .sector.auth-methods{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:4px}
+.auth .sector button{
+  border-radius:14px;
+  padding:14px 8px;
+  font-size:13px;
+  font-weight:650;
+  min-height:48px;
+}
+.auth .owner-sector{grid-template-columns:repeat(2,minmax(0,1fr))}
+.auth .row.spread{margin-top:18px;gap:8px}
+.auth .contact{padding-top:18px}
+@media(max-width:420px){
+  .auth .sector{grid-template-columns:1fr;gap:8px}
+  .auth .sector.auth-methods,.auth .owner-sector{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .auth-mark img{width:76px;height:76px}
+  .auth .brand{font-size:34px}
+}
+
+/* Install dock: below the first viewport, not above the brand */
+.web-install-tools{
+  position:fixed;
+  left:12px;
+  right:12px;
+  bottom:calc(12px + env(safe-area-inset-bottom));
+  z-index:40;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:10px 12px 10px 14px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:color-mix(in srgb,var(--surface) 94%,transparent);
+  backdrop-filter:blur(12px);
+  box-shadow:0 14px 36px color-mix(in srgb,#0b2a18 16%,transparent);
+  font-size:13px;
+}
+.web-install-tools strong{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-size:13px;
+  font-weight:700;
+  color:var(--ink);
+}
+.web-install-tools strong::before{
+  content:"";
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:var(--brand);
+  box-shadow:0 0 0 4px var(--brand-soft);
+}
+.web-install-tools button{
+  min-height:42px;
+  padding:8px 14px;
+  font-size:13px;
+  font-weight:700;
+  border-radius:12px;
+  background:var(--brand);
+  color:#fff;
+  border-color:var(--brand);
+}
+.web-install-tools[hidden]{display:none}
+/* Keep the install dock on the auth screen only so it does not cover Satışı Tamamla. */
+body:has(#app:not(.auth-shell)) #web-install-tools{display:none!important}
+body.oc-open .web-install-tools{display:none}
+
+#toast{
+  animation:aesd-toast-in .35s ease both;
+  border-radius:14px;
+}
+@keyframes aesd-auth-in{
+  from{opacity:0;transform:translateY(14px)}
+  to{opacity:1;transform:none}
+}
+@keyframes aesd-toast-in{
+  from{opacity:0;transform:translate(-50%,12px)}
+  to{opacity:1;transform:translate(-50%,0)}
+}
+@media(prefers-reduced-motion:reduce){
+  .auth,#toast,button,.product,.basket .line{animation:none!important;transition:none!important}
+}
+
+.top{background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(10px)}
+.top-mark{width:36px;height:36px;border-radius:10px;flex:0 0 36px;box-shadow:0 4px 12px color-mix(in srgb,var(--brand) 22%,transparent)}
+.loading{color:var(--muted);letter-spacing:.04em}
+
+/* Sale shell: catalog first, compact summary, sticky checkout */
+.sale-shell{
+  min-height:100dvh;
+  background:
+    radial-gradient(80% 50% at 100% 0%,color-mix(in srgb,var(--brand) 12%,transparent) 0%,transparent 55%),
+    var(--canvas);
+}
+.sale-shell main{padding-top:18px}
+.sale-heading{margin-bottom:12px}
+.sale-heading h1{font-size:24px;letter-spacing:-.02em;margin-bottom:2px}
+.stats-strip{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px;
+  margin-bottom:16px;
+  padding:0;
+  background:transparent;
+  border:0;
+  box-shadow:none;
+}
+.stats-strip .stat{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  padding:10px 12px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:color-mix(in srgb,var(--surface) 88%,transparent);
+  box-shadow:none;
+}
+.stats-strip .stat:first-child{
+  background:linear-gradient(120deg,var(--brand-soft),var(--surface));
+  border-color:color-mix(in srgb,var(--brand) 24%,var(--line));
+}
+.stats-strip .stat strong{font-size:18px;letter-spacing:-.02em;margin:0;color:var(--ink)}
+.stats-strip .stat:first-child strong{color:var(--brand-ink)}
+.stats-strip .stat span{font-size:11px;font-weight:650;letter-spacing:.02em;text-transform:uppercase}
+.stats-strip .stat small{display:none}
+.sale-layout{gap:18px}
+.catalog-section .search-bar{
+  padding:12px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:var(--surface);
+  margin-bottom:4px;
+}
+.categories{margin:12px 0}
+.categories button{
+  border-radius:999px;
+  background:var(--soft);
+  border-color:transparent;
+  font-weight:650;
+}
+.categories button.selected{background:var(--brand)!important;color:#fff!important;border-color:var(--brand)!important}
+.product{
+  border:1px solid var(--line);
+  border-radius:18px;
+  box-shadow:none;
+  transition:transform .12s ease,border-color .12s ease;
+}
+.product:active{transform:scale(.98)}
+.product-photo{
+  background:linear-gradient(145deg,var(--brand-soft),var(--soft));
+}
+.product-photo>.ui-icon{stroke:color-mix(in srgb,var(--brand) 55%,#7a9486)}
+.basket.card{
+  border:1px solid var(--line);
+  border-radius:22px;
+  box-shadow:0 16px 40px color-mix(in srgb,#102418 8%,transparent);
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  max-height:calc(100dvh - 110px);
+  overflow:auto;
+}
+.basket-heading{border-bottom-color:var(--line)}
+.basket-checkout{margin-top:8px}
+.basket-checkout .primary[disabled]{opacity:.45;cursor:not-allowed;box-shadow:none}
+.basket-empty{padding:28px 8px}
+.basket-note{color:var(--muted);font-size:11px}
+.empty{
+  border-color:var(--line);
+  background:color-mix(in srgb,var(--surface) 70%,transparent);
+  color:var(--muted);
+}
+.tabs{background:var(--soft);border-color:var(--line)}
+.menu-trigger{background:var(--soft);border-color:var(--line)}
+.sync-status{max-width:min(280px,36vw)}
+button:hover{background:var(--soft);border-color:color-mix(in srgb,var(--brand) 22%,var(--line))}
+.basket .line{
+  border-radius:12px;
+  padding:8px 6px;
+  transition:background .15s ease;
+}
+.basket .line:hover{background:var(--brand-soft)}
+@keyframes aesd-line-in{
+  from{opacity:0;transform:translateY(6px)}
+  to{opacity:1;transform:none}
+}
+.basket .line{animation:aesd-line-in .22s ease both}
+
+/* Settings: same brand field, quieter cards */
+.settings-shell{
+  min-height:100dvh;
+  background:
+    radial-gradient(70% 40% at 0% 0%,color-mix(in srgb,var(--brand) 10%,transparent) 0%,transparent 50%),
+    var(--canvas);
+}
+.settings-shell main{max-width:960px;padding-top:18px}
+.settings-head h1{font-size:24px;letter-spacing:-.02em;margin-bottom:2px}
+.settings-group{
+  border:1px solid var(--line);
+  border-radius:20px;
+  box-shadow:none;
+  padding:6px;
+  margin-bottom:14px;
+}
+.settings-group h2{
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:var(--muted);
+  padding:10px 14px 4px;
+  margin:0;
+}
+.settings-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  width:100%;
+  text-align:left;
+  border:0;
+  border-radius:14px;
+  background:transparent;
+  padding:14px 14px;
+  box-shadow:none;
+}
+.settings-row:hover{background:var(--brand-soft);border-color:transparent}
+.settings-row strong{display:block;font-size:15px}
+.settings-row small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+.settings-row b{color:var(--brand);font-weight:700}
+.panel-selector{
+  border:1px solid var(--line);
+  border-radius:18px;
+  box-shadow:none;
+  margin-bottom:14px;
+}
+.panel-selector summary{font-weight:700;cursor:pointer;padding:4px 2px}
+.account-card{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:color-mix(in srgb,var(--surface) 90%,transparent);
+  margin:16px 0;
+}
+dialog{
+  border:1px solid var(--line);
+  border-radius:22px;
+  box-shadow:0 24px 60px color-mix(in srgb,#102418 18%,transparent);
+}
+.dialog-top{border-bottom-color:var(--line)}
+
+@media(max-width:700px){
+  .stats-strip{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:6px;
+  }
+  .stats-strip .stat{padding:8px 6px;grid-column:auto!important}
+  .stats-strip .stat strong{font-size:15px}
+  .stats-strip .stat span{display:block;font-size:9px;line-height:1.2}
+  .sale-layout{display:flex;flex-direction:column;gap:14px}
+  .catalog-section{order:1}
+  .basket.card{
+    order:2;
+    position:relative;
+    top:auto;
+    bottom:auto;
+    z-index:1;
+    max-height:none;
+    width:100%;
+    margin:0;
+    border-radius:20px;
+    box-shadow:0 10px 28px color-mix(in srgb,#102418 10%,transparent);
+  }
+  .basket-checkout .primary.full{
+    position:sticky;
+    bottom:calc(8px + env(safe-area-inset-bottom));
+    z-index:6;
+  }
+  .top-mark{width:30px;height:30px;flex-basis:30px}
+  .top .badge{display:none}
+  .account-card{flex-direction:column;align-items:stretch}
+}
+@media(max-width:420px){
+  .stats-strip .stat strong{font-size:14px}
+  .sale-heading h1{font-size:20px}
+}
+
+/* Approved compact login: installation stays in the document flow. */
+.auth-shell{padding:28px 24px 20px;place-items:start center;min-height:100dvh}
+.auth{width:min(390px,100%)}
+.auth-mark{grid-template-columns:45px 1fr;grid-template-rows:auto auto;text-align:left;justify-items:start;column-gap:12px;row-gap:3px;margin-bottom:25px}
+.auth-mark img{width:45px;height:45px;border-radius:12px;grid-row:1/3;box-shadow:none}
+.auth .brand{font-size:24px;line-height:1.2;letter-spacing:.08em}
+.auth .tagline{font-size:10px;max-width:none;line-height:1.5}
+.auth .card{padding:0;background:transparent;box-shadow:none;border-radius:0;backdrop-filter:none}
+.auth .card h1{font-size:28px;margin-bottom:8px}
+.auth .card>p.muted{font-size:13px;line-height:1.7}
+.auth .sector{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:19px;gap:7px}
+.auth .sector.auth-methods{margin:16px 0 20px;padding:4px;border:1px solid var(--line);border-radius:13px}
+.auth .sector button{min-height:44px;padding:11px 7px;border-radius:11px;font-size:12px}
+.auth .owner-sector{grid-template-columns:repeat(2,minmax(0,1fr))}
+.auth form input:not([type=checkbox]){min-height:50px;font-size:16px;border-radius:12px}
+.auth form>label{font-size:13px}
+.auth .check{min-height:44px;font-size:12px}
+.auth .check::after{content:'Ortak cihazlarda kapalı tut.';font-size:10px;color:var(--muted);margin-left:6px}
+.auth button,.auth a{min-height:44px}
+.auth [type=submit]{min-height:52px;border-radius:13px}
+.auth .row.spread{margin-top:13px}
+.auth .contact{font-size:11px;padding-top:15px}
+body:has(#app.auth-shell) #web-install-tools{position:static!important;inset:auto!important;transform:none!important;width:calc(100% - 48px);max-width:390px;margin:0 auto 24px;border-radius:14px;z-index:auto;box-shadow:none}
+@media(min-width:1000px){.auth-shell{padding-top:65px}.auth{width:390px}}
+@media(max-width:350px){.auth-shell{padding-inline:20px}.auth .card h1{font-size:25px}.auth .check::after{display:block;font-size:9px}}
+
+.auth-password-field{position:relative}.auth-password-field input{width:100%;padding-right:76px}.auth-password-field button{position:absolute;right:4px;top:3px;min-width:65px;min-height:44px;background:transparent;border:0;font-size:12px;color:var(--muted)}
+
+.auth-story{display:none}@media(min-width:1000px){.auth-shell{grid-template-columns:minmax(360px,1fr) minmax(390px,1fr);place-items:center;gap:60px;padding:48px;min-height:100dvh}.auth-story{display:flex;flex-direction:column;align-self:stretch;justify-content:center;max-width:600px;padding:50px;background:color-mix(in srgb,var(--brand) 13%,var(--surface));border:1px solid var(--line);border-radius:24px}.auth-story-brand{display:flex;gap:14px;align-items:center;margin-bottom:65px}.auth-story-brand img{border-radius:13px}.auth-story-brand strong{font-size:25px;letter-spacing:.1em}.auth-story h2{font-size:44px;line-height:1.15;letter-spacing:-.04em}.auth-story h2 span{color:var(--brand)}.auth-story>p{font-size:15px;line-height:1.8;color:var(--muted);margin-top:24px}.auth-story small{font-size:12px;color:var(--muted);margin-top:65px}.auth-shell>.auth{align-self:center}}
+
+/* Simple account entry: choose the business panel after authentication. */
+.simple-auth .auth{padding-top:20px}
+.simple-auth .auth-mark{display:flex;align-items:center;justify-content:center;margin-bottom:32px}
+.simple-auth .auth-mark img{width:60px;height:60px}
+.simple-auth .auth-mark .brand{font-size:32px}
+.simple-auth .auth-mark .tagline,.simple-auth .auth-story{display:none}
+.simple-auth .auth h1,.simple-auth .auth .card>p.muted{text-align:center}
+.simple-auth .auth form{margin-top:24px}
+.simple-auth .auth-alternatives{margin:18px 0 0;color:var(--muted);font-size:12px}
+.simple-auth .auth-alternatives summary{cursor:pointer;min-height:32px}
+.simple-auth .auth .check::after{content:none}
+.simple-auth .auth .row.spread{display:flex;flex-direction:column-reverse;align-items:stretch}
+.simple-auth .auth .contact{text-align:center}
+.workspace-setting-row[data-danger=true]{border:1px solid #bd414b;color:#b52a38}
+.reset-review{max-width:560px}.reset-review li{margin:12px 0}
+.reset-warning{border:1px solid #bf3e4b;background:#b52a3810;border-radius:14px;padding:16px;color:var(--text)}
+.reset-preserved{border:1px solid #00843d;border-radius:14px;padding:14px}
+.reset-review form{margin-top:16px}.reset-review .full{margin-top:12px}
+.reset-review .danger{background:#b91c30;color:#fff}
+.reset-review button:disabled{opacity:.5}
+.simple-auth{
+ --brand:#27cf78;--brand-ink:#8aefb0;--surface:#11291e;--panel:#11291e;--ink:#f0f7f2;--muted:#a8c0b2;--line:#375345;--soft:#183b2a;
+ color:var(--ink);color-scheme:dark;grid-template-columns:minmax(0,390px);justify-content:center;
+ background:radial-gradient(ellipse at 35% 0%,#17452e 0%,transparent 60%),#081a12;
+}
+.simple-auth .auth .brand{color:var(--ink)}
+.simple-auth .auth input{background:#122b20;color:var(--ink);border-color:var(--line)}
+.simple-auth .auth .primary{color:#062416!important;box-shadow:none}
+.simple-auth .auth [data-action=forgot]{border:0;background:transparent}
+.simple-auth .auth [data-action=show-register]{background:transparent;border-color:var(--line)}
+body:has(.simple-auth){background:#081a12}
+body:has(.simple-auth) #web-install-tools{background:#11291e;color:#f0f7f2;border-color:#375345}
+body:has(.simple-auth) #web-install-button{background:#27cf78!important;color:#062416!important;border-color:#27cf78!important}
+
+body:has(.simple-auth) #web-install-tools strong{color:#f0f7f2}
+.simple-auth .auth button[data-action=forgot]{background:transparent!important}

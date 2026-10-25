@@ -1,0 +1,36 @@
+{
+  "verifiedAt": "2026-10-12T14:10:47.000020+00:00",
+  "baseCommit": "e14ff2c86544c263684b4563ddbb01945de2e720",
+  "nodeVersion": "24.19.0",
+  "unitPassed": 172,
+  "privatePassed": 5,
+  "browserGroups": {
+    "browser": 26,
+    "auth-browser": 15,
+    "webview-origin": 3,
+    "review-browser": 12,
+    "panels-browser": 28,
+    "cloud-browser": 8
+  },
+  "browserPassed": 92,
+  "packagingPassed": 15,
+  "migrationBefore": {
+    "passed": 1,
+    "failed": 2
+  },
+  "migrationAfter": {
+    "passed": 3,
+    "failed": 0
+  },
+  "cleanInstallRun": false,
+  "nativeHttpRun": false,
+  "postgresIntegrationRun": false,
+  "realEmailDeliveryRun": false,
+  "realAndroidRun": false,
+  "realIosRun": false,
+  "merged": false,
+  "deployed": false,
+  "apkBuilt": false,
+  "driveWritten": false,
+  "appSha256": "8e31d520511720d0a7c51e8981a933eebf163b6ceb0559c8b9039c5ba6085fa5"
+}

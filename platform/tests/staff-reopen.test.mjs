@@ -1,0 +1,11 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import {backup} from 'node:sqlite';
+import {sqlite} from '../server/sqlite-adapter.mjs';
+import {createPlatform} from '../server/platform-core.mjs';
+import {createStaffAccess} from '../server/staff-access.mjs';
+import {staffFixture} from './staff-fixture.mjs';
+test('Staff approvals, blocked devices and token binding survive a database reopen',async()=>{const f=await staffFixture(),dir=fs.mkdtempSync(path.join(os.tmpdir(),'aesd-staff-reopen-'));let db;try{const {response,p,d}=await f.approve();await f.access.changeDevice(f.owner,d.id,{action:'block'});const file=path.join(dir,'control.sqlite');await backup(f.db,file);db=sqlite(file);const platform=createPlatform({db,secret:'staff-access-test-secret-never-for-production',passwords:f.passwords,persist:async()=>{},ready:()=>true}),access=createStaffAccess({db,platform,passwords:f.passwords}),reopened=access.authenticate(response.token,p.deviceId);assert.equal(access.status(reopened).accessState,'blocked');assert.throws(()=>access.guard(reopened),e=>e.status===403);const owner=platform.authenticate(f.ownerLogin.token);await access.changeDevice(owner,d.id,{action:'approve',verificationCode:response.verificationCode});assert.equal(access.guard(reopened),'owner:1');assert.throws(()=>access.authenticate(response.token,'unapproved_device_001'),e=>e.status===401);}finally{db?.close();f.close();fs.rmSync(dir,{recursive:true,force:true});}});

@@ -1,0 +1,36 @@
+(node:58963) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAP version 13
+# Subtest: Staff approvals, blocked devices and token binding survive a database reopen
+ok 1 - Staff approvals, blocked devices and token binding survive a database reopen
+  ---
+  duration_ms: 365.1977
+  type: 'test'
+  ...
+# Subtest: Registered owner routes reject staff tokens, including private HTML and cloud writes
+ok 2 - Registered owner routes reject staff tokens, including private HTML and cloud writes
+  ---
+  duration_ms: 6.995024
+  type: 'test'
+  ...
+# Subtest: Registered staff routes enforce pending approval and expose requests to the owner
+ok 3 - Registered staff routes enforce pending approval and expose requests to the owner
+  ---
+  duration_ms: 9.596939
+  type: 'test'
+  ...
+# Subtest: Registered staff routes reject a forged owner token and another device
+ok 4 - Registered staff routes reject a forged owner token and another device
+  ---
+  duration_ms: 6.114012
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 940.139688

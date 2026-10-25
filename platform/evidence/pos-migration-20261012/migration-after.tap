@@ -1,0 +1,11 @@
+✔ A queued close from the previous dialog does not cancel a new migration (104.165321ms)
+✔ Closing the current migration dialog still cancels it (16.672863ms)
+✔ A queued close does not stop a camera opened by the new dialog (16.787371ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 796.774597

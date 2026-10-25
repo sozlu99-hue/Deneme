@@ -1,0 +1,13 @@
+body{background:var(--canvas)!important;color:var(--ink)!important}
+.oses-catalog-scroll{background:var(--canvas)!important}
+.oses-product-card,.oses-cart-panel,.aesd-private-revenue>div,.aesd-private-revenue>div:first-child{background:var(--surface)!important;border-color:var(--line)!important;color:var(--ink)!important}
+.oses-header{background:var(--surface)!important;border-color:var(--line)!important}
+.oses-menu-button,.oses-sidebar,#aesd-private-sync{display:none!important}
+:root[data-theme=dark] [class*="bg-white"],:root[data-theme=dark] [class*="bg-slate-50"],:root[data-theme=dark] [class*="bg-gray-50"]{background-color:var(--surface)!important}
+:root[data-theme=dark] [class*="bg-slate-100"],:root[data-theme=dark] [class*="bg-gray-100"]{background-color:var(--canvas)!important}
+:root[data-theme=dark] [class*="text-slate-900"],:root[data-theme=dark] [class*="text-slate-800"],:root[data-theme=dark] [class*="text-slate-700"],:root[data-theme=dark] [class*="text-gray-900"]{color:var(--ink)!important}
+:root[data-theme=dark] [class*="text-slate-600"],:root[data-theme=dark] [class*="text-slate-500"],:root[data-theme=dark] [class*="text-slate-400"]{color:var(--muted)!important}
+:root[data-theme=dark] [class*="border-slate-"],:root[data-theme=dark] [class*="border-gray-"]{border-color:var(--line)!important}
+:root[data-theme=dark] input,:root[data-theme=dark] select,:root[data-theme=dark] textarea{background:var(--soft)!important;color:var(--ink)!important}
+:root[data-theme=dark] .aesd-private-revenue>div:first-child strong{color:var(--red)!important}
+.aesd-private-revenue span,.aesd-private-revenue small{color:var(--muted)!important}

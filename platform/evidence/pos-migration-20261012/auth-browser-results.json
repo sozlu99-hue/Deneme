@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "checks": [
+    "HTML success response is rejected without a session or a role exception",
+    "Broken JSON response is rejected without a session or a role exception",
+    "Missing user response is rejected without a session or a role exception",
+    "Null user response is rejected without a session or a role exception",
+    "False success response is rejected without a session or a role exception",
+    "An undeployed API shows a clear Turkish error",
+    "The recovery form requests a persisted challenge with an isolated mail provider",
+    "An existing emailed code can be entered without requesting another message",
+    "Different new passwords are rejected in the recovery dialog",
+    "Wrong codes show an error inside the recovery dialog",
+    "A valid code changes the password and returns to login",
+    "Password recovery revokes the remembered server session",
+    "The old password no longer works",
+    "The new password works and retains the pending business state",
+    "No page exception in the tested authentication and reset flows"
+  ],
+  "checksCount": 15,
+  "screens": [
+    "login-error-fixed.png",
+    "password-request-fixed.png",
+    "password-confirm-fixed.png"
+  ],
+  "screensCount": 3,
+  "pageErrors": [],
+  "android": false,
+  "realEmail": false
+}

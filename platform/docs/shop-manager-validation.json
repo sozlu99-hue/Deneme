@@ -1,0 +1,54 @@
+{
+  "checkedAt": "2026-10-25T06:20:39.113977+00:00",
+  "version": "1.11.0",
+  "versionCode": 210,
+  "syntheticDataOnly": true,
+  "tests": {
+    "platformNode": {
+      "pass": 308,
+      "fail": 0,
+      "skip": 0
+    },
+    "privateLegacy": {
+      "pass": 7,
+      "fail": 0,
+      "skip": 0
+    },
+    "nativeSQLiteHttp": {
+      "pass": 1,
+      "fail": 0,
+      "skip": 0
+    },
+    "rootWithPostgres": {
+      "pass": 25,
+      "fail": 0,
+      "skip": 0
+    },
+    "postgres": {
+      "pass": 11,
+      "fail": 0,
+      "skip": 0
+    },
+    "apkPackaging": {
+      "pass": 18,
+      "fail": 0
+    },
+    "browser": {
+      "groups": 15,
+      "checks": 177,
+      "fail": 0,
+      "note": "14 existing groups plus the final 8-check manager group"
+    }
+  },
+  "productionAccountActivated": false,
+  "productionFinancialWrites": false,
+  "physicalAndroidTested": false,
+  "realProviderTested": false,
+  "cariChanged": false,
+  "designRedesignIncluded": false,
+  "remainingAcceptance": [
+    "Owner must activate the real grant and approve the manager device in the authenticated application.",
+    "Physical Android upgrade and sign-in require device acceptance.",
+    "Manager operations require internet; owner offline queue is unchanged."
+  ]
+}

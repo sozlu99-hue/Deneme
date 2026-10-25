@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-09T07:55:46.932257+00:00",
+  "scope": "Web staff device approval and restricted sales",
+  "mainTests": {
+    "passed": 127,
+    "failed": 0,
+    "evidence": "staff-full-tests.tap"
+  },
+  "privateTests": {
+    "passed": 61,
+    "failed": 0,
+    "evidence": "staff-private-tests.tap"
+  },
+  "totalTestsPassed": 188,
+  "newStaffTestsPassed": 24,
+  "staffUiDomTestsPassed": 3,
+  "routeTestsUseIsolatedHandlers": true,
+  "databaseReopenTestPassed": true,
+  "sourceHashes": "staff-source-hashes.json",
+  "report": "../docs/STAFF-DEVICE-APPROVAL.md",
+  "deployment": {
+    "status": "not deployed yet",
+    "url": "https://aesd-server.onrender.com/aesd/",
+    "staffUrl": "https://aesd-server.onrender.com/aesd/staff.html"
+  },
+  "newApkBuilt": false,
+  "staffOfflineSales": false,
+  "ownerOfflineSalesUnchanged": true,
+  "literalLinkForwardingDetected": false,
+  "staffNewDeviceApprovalRequired": true,
+  "ownerPasswordMustStayPrivate": true,
+  "emailOrPushNotificationsAdded": false,
+  "newBrowserScreenTest": false,
+  "realIphoneTest": false,
+  "realAndroidTabletTest": false,
+  "productionStaffAccountTest": false,
+  "rawProductionHttpCheck": false,
+  "paymentProviderTest": false,
+  "productionReadyCertification": false
+}

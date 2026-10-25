@@ -1,0 +1,1048 @@
+
+> aesd-platform@1.5.1 test
+> node --experimental-vm-modules --test --test-isolation=none --test-reporter=tap tests/*.test.mjs
+
+TAP version 13
+# Subtest: An authenticated 403 conceals cached records and closes stores, dialogs and the private frame
+ok 1 - An authenticated 403 conceals cached records and closes stores, dialogs and the private frame
+  ---
+  duration_ms: 403.268301
+  type: 'test'
+  ...
+# Subtest: An authenticated 401 clears login state and retains durable sale queues
+ok 2 - An authenticated 401 clears login state and retains durable sale queues
+  ---
+  duration_ms: 89.444567
+  type: 'test'
+  ...
+# Subtest: Public login and recovery errors do not revoke an existing session
+ok 3 - Public login and recovery errors do not revoke an existing session
+  ---
+  duration_ms: 73.087984
+  type: 'test'
+  ...
+# Subtest: A wrong owner verification password returns false without revoking access
+ok 4 - A wrong owner verification password returns false without revoking access
+  ---
+  duration_ms: 110.996426
+  type: 'test'
+  ...
+# Subtest: Late lease verification cannot restore access after an authoritative denial
+ok 5 - Late lease verification cannot restore access after an authoritative denial
+  ---
+  duration_ms: 87.257791
+  type: 'test'
+  ...
+# Subtest: A late write completion cannot restore state or report a paid sale after access is denied
+ok 6 - A late write completion cannot restore state or report a paid sale after access is denied
+  ---
+  duration_ms: 119.240787
+  type: 'test'
+  ...
+# Subtest: A real cloud store retains a lost payment ACK when receipt lookup needs a new login
+ok 7 - A real cloud store retains a lost payment ACK when receipt lookup needs a new login
+  ---
+  duration_ms: 45.273469
+  type: 'test'
+  ...
+# Subtest: The protected private page enforces the same 403 view fencing
+ok 8 - The protected private page enforces the same 403 view fencing
+  ---
+  duration_ms: 79.934089
+  type: 'test'
+  ...
+# Subtest: A non-JSON authentication failure remains uncertain and does not revoke access
+ok 9 - A non-JSON authentication failure remains uncertain and does not revoke access
+  ---
+  duration_ms: 60.373921
+  type: 'test'
+  ...
+# Subtest: A late network failure remains stale after access has already been denied
+ok 10 - A late network failure remains stale after access has already been denied
+  ---
+  duration_ms: 17.054779
+  type: 'test'
+  ...
+# Subtest: A late backup read cannot export shop records after access is denied
+ok 11 - A late backup read cannot export shop records after access is denied
+  ---
+  duration_ms: 17.690124
+  type: 'test'
+  ...
+# Subtest: A license closed during receipt lookup cannot commit a cloud sale
+ok 12 - A license closed during receipt lookup cannot commit a cloud sale
+  ---
+  duration_ms: 19.90551
+  type: 'test'
+  ...
+# Subtest: A duplicate operation does not expose panel data after its license closes
+ok 13 - A duplicate operation does not expose panel data after its license closes
+  ---
+  duration_ms: 10.069741
+  type: 'test'
+  ...
+# Subtest: A cloud receipt response rechecks the license after database lookup
+ok 14 - A cloud receipt response rechecks the license after database lookup
+  ---
+  duration_ms: 8.358846
+  type: 'test'
+  ...
+# Subtest: A changed role cannot redirect an in-flight request to an old tenant record
+ok 15 - A changed role cannot redirect an in-flight request to an old tenant record
+  ---
+  duration_ms: 10.854443
+  type: 'test'
+  ...
+# Subtest: Shared control serialization makes a license closure wait for a sale transaction
+ok 16 - Shared control serialization makes a license closure wait for a sale transaction
+  ---
+  duration_ms: 12.666424
+  type: 'test'
+  ...
+# Subtest: A sale queued after a license closure cannot use its earlier principal
+ok 17 - A sale queued after a license closure cannot use its earlier principal
+  ---
+  duration_ms: 10.388677
+  type: 'test'
+  ...
+# Subtest: Session expiry during receipt lookup rejects the sale and retains stock
+ok 18 - Session expiry during receipt lookup rejects the sale and retains stock
+  ---
+  duration_ms: 6.461683
+  type: 'test'
+  ...
+# Subtest: A license closed during database save rolls back the sale and stock deduction
+ok 19 - A license closed during database save rolls back the sale and stock deduction
+  ---
+  duration_ms: 7.318368
+  type: 'test'
+  ...
+# Subtest: A direct cloud read cannot return records after a pending license closure
+ok 20 - A direct cloud read cannot return records after a pending license closure
+  ---
+  duration_ms: 9.153353
+  type: 'test'
+  ...
+# Subtest: Installed cloud routes serialize sale commits with owner license control
+ok 21 - Installed cloud routes serialize sale commits with owner license control
+  ---
+  duration_ms: 15.852312
+  type: 'test'
+  ...
+# Subtest: Two tabs cannot overwrite a pending operation, and an old response cannot clear a newer ID
+ok 22 - Two tabs cannot overwrite a pending operation, and an old response cannot clear a newer ID
+  ---
+  duration_ms: 2.229131
+  type: 'test'
+  ...
+# Subtest: An unreadable 403 retains a paid sale ID and recovers it once after store reopen
+ok 23 - An unreadable 403 retains a paid sale ID and recovers it once after store reopen
+  ---
+  duration_ms: 6.745496
+  type: 'test'
+  ...
+# Subtest: A valid 400 rejection clears an unpaid cloud operation
+ok 24 - A valid 400 rejection clears an unpaid cloud operation
+  ---
+  duration_ms: 3.820777
+  type: 'test'
+  ...
+# Subtest: Two devices read the same sale, stock and debt after one commit
+ok 25 - Two devices read the same sale, stock and debt after one commit
+  ---
+  duration_ms: 3.13028
+  type: 'test'
+  ...
+# Subtest: A duplicate operation after response loss creates one sale and one deduction
+ok 26 - A duplicate operation after response loss creates one sale and one deduction
+  ---
+  duration_ms: 1.863998
+  type: 'test'
+  ...
+# Subtest: Only one of two concurrent sales can use the last stock
+ok 27 - Only one of two concurrent sales can use the last stock
+  ---
+  duration_ms: 2.562106
+  type: 'test'
+  ...
+# Subtest: Purchases preserve past costs; cancellation and collection preserve balances
+ok 28 - Purchases preserve past costs; cancellation and collection preserve balances
+  ---
+  duration_ms: 2.767764
+  type: 'test'
+  ...
+# Subtest: Different imports cannot replace shared records, and wrong scopes fail
+ok 29 - Different imports cannot replace shared records, and wrong scopes fail
+  ---
+  duration_ms: 9.640366
+  type: 'test'
+  ...
+# Subtest: The cloud permission check rejects suspended licenses, foreign devices and private access
+ok 30 - The cloud permission check rejects suspended licenses, foreign devices and private access
+  ---
+  duration_ms: 6.675245
+  type: 'test'
+  ...
+# Subtest: A failed storage transaction does not report a successful sale
+ok 31 - A failed storage transaction does not report a successful sale
+  ---
+  duration_ms: 0.682763
+  type: 'test'
+  ...
+# Subtest: An empty first phone record accepts the tablet import before shared operations begin
+ok 32 - An empty first phone record accepts the tablet import before shared operations begin
+  ---
+  duration_ms: 1.708786
+  type: 'test'
+  ...
+# Subtest: An identical populated import with reordered fields retains the ledger and revision
+ok 33 - An identical populated import with reordered fields retains the ledger and revision
+  ---
+  duration_ms: 2.725655
+  type: 'test'
+  ...
+# Subtest: The updated mail library builds a Turkish reset message without network delivery
+ok 34 - The updated mail library builds a Turkish reset message without network delivery
+  ---
+  duration_ms: 19.592251
+  type: 'test'
+  ...
+# Subtest: The mail transport rejects a file attachment when file access is disabled
+ok 35 - The mail transport rejects a file attachment when file access is disabled
+  ---
+  duration_ms: 4.96087
+  type: 'test'
+  ...
+# Subtest: Legacy control paths include patched password routes and exclude AESD queued routes
+ok 36 - Legacy control paths include patched password routes and exclude AESD queued routes
+  ---
+  duration_ms: 0.76907
+  type: 'test'
+  ...
+# Subtest: Legacy account suspension cannot report success before an earlier sale commits
+ok 37 - Legacy account suspension cannot report success before an earlier sale commits
+  ---
+  duration_ms: 9.006249
+  type: 'test'
+  ...
+# Subtest: A legacy password change invalidates a cloud sale queued during password hashing
+ok 38 - A legacy password change invalidates a cloud sale queued during password hashing
+  ---
+  duration_ms: 7.130456
+  type: 'test'
+  ...
+# Subtest: A legacy response waits for the shared durable snapshot
+ok 39 - A legacy response waits for the shared durable snapshot
+  ---
+  duration_ms: 8.711923
+  type: 'test'
+  ...
+# Subtest: A failed legacy snapshot does not return success and fences later operations
+ok 40 - A failed legacy snapshot does not return success and fences later operations
+  ---
+  duration_ms: 9.081354
+  type: 'test'
+  ...
+# Subtest: The legacy Google password route keeps its HTML response
+ok 41 - The legacy Google password route keeps its HTML response
+  ---
+  duration_ms: 5.774912
+  type: 'test'
+  ...
+# Subtest: A legacy default error response can finish with end and keeps its arguments
+ok 42 - A legacy default error response can finish with end and keeps its arguments
+  ---
+  duration_ms: 6.081485
+  type: 'test'
+  ...
+# Subtest: A failed snapshot replaces an end-only success response with an error
+ok 43 - A failed snapshot replaces an end-only success response with an error
+  ---
+  duration_ms: 6.051694
+  type: 'test'
+  ...
+# Subtest: A closed connection does not release control while its handler can still write
+ok 44 - A closed connection does not release control while its handler can still write
+  ---
+  duration_ms: 11.940041
+  type: 'test'
+  ...
+# Subtest: AESD financial routes can use their queue without a nested legacy lock
+ok 45 - AESD financial routes can use their queue without a nested legacy lock
+  ---
+  duration_ms: 8.82672
+  type: 'test'
+  ...
+# Subtest: Legacy control errors do not expose the internal exception
+ok 46 - Legacy control errors do not expose the internal exception
+  ---
+  duration_ms: 7.204134
+  type: 'test'
+  ...
+# Subtest: Recovery chooses configured Gmail HTTPS instead of the legacy SMTP default
+ok 47 - Recovery chooses configured Gmail HTTPS instead of the legacy SMTP default
+  ---
+  duration_ms: 1.957605
+  type: 'test'
+  ...
+# Subtest: Recovery preserves an explicit recovery-provider setting
+ok 48 - Recovery preserves an explicit recovery-provider setting
+  ---
+  duration_ms: 1.216521
+  type: 'test'
+  ...
+# Subtest: Gmail recovery sends through HTTPS and reports provider acceptance
+ok 49 - Gmail recovery sends through HTTPS and reports provider acceptance
+  ---
+  duration_ms: 7.708548
+  type: 'test'
+  ...
+# Subtest: Gmail recovery rejects a failed send response and does not claim delivery
+ok 50 - Gmail recovery rejects a failed send response and does not claim delivery
+  ---
+  duration_ms: 2.922967
+  type: 'test'
+  ...
+# Subtest: The SMTP adapter disables file and URL access and waits for provider acceptance
+ok 51 - The SMTP adapter disables file and URL access and waits for provider acceptance
+  ---
+  duration_ms: 1.525426
+  type: 'test'
+  ...
+# Subtest: A queued close from the previous dialog does not cancel a new migration
+ok 52 - A queued close from the previous dialog does not cancel a new migration
+  ---
+  duration_ms: 22.043953
+  type: 'test'
+  ...
+# Subtest: Closing the current migration dialog still cancels it
+ok 53 - Closing the current migration dialog still cancels it
+  ---
+  duration_ms: 14.623248
+  type: 'test'
+  ...
+# Subtest: A queued close does not stop a camera opened by the new dialog
+ok 54 - A queued close does not stop a camera opened by the new dialog
+  ---
+  duration_ms: 52.15363
+  type: 'test'
+  ...
+# Subtest: Reset changes the account password, retains role and records, revokes all sessions, and consumes the code
+ok 55 - Reset changes the account password, retains role and records, revokes all sessions, and consumes the code
+  ---
+  duration_ms: 89.988196
+  type: 'test'
+  ...
+# Subtest: Unknown and inactive accounts return the same accepted request and send no message
+ok 56 - Unknown and inactive accounts return the same accepted request and send no message
+  ---
+  duration_ms: 12.435224
+  type: 'test'
+  ...
+# Subtest: Five wrong codes exhaust a challenge and each attempt persists
+ok 57 - Five wrong codes exhaust a challenge and each attempt persists
+  ---
+  duration_ms: 10.357786
+  type: 'test'
+  ...
+# Subtest: A challenge expires after exactly ten minutes
+ok 58 - A challenge expires after exactly ten minutes
+  ---
+  duration_ms: 13.185568
+  type: 'test'
+  ...
+# Subtest: A new request replaces the prior code and enforces a one-minute cooldown
+ok 59 - A new request replaces the prior code and enforces a one-minute cooldown
+  ---
+  duration_ms: 12.731985
+  type: 'test'
+  ...
+# Subtest: A code cannot change another account password or grant OWNER
+ok 60 - A code cannot change another account password or grant OWNER
+  ---
+  duration_ms: 44.764034
+  type: 'test'
+  ...
+# Subtest: Provider failure invalidates the challenge and never reports success
+ok 61 - Provider failure invalidates the challenge and never reports success
+  ---
+  duration_ms: 9.877216
+  type: 'test'
+  ...
+# Subtest: Unconfigured mail and failed persistence do not send a message
+ok 62 - Unconfigured mail and failed persistence do not send a message
+  ---
+  duration_ms: 11.706176
+  type: 'test'
+  ...
+# Subtest: Oversized UTF-8 password is rejected without consuming the code
+ok 63 - Oversized UTF-8 password is rejected without consuming the code
+  ---
+  duration_ms: 9.839775
+  type: 'test'
+  ...
+# Subtest: Registration assigns CLIENT, stays pending and does not start a trial
+ok 64 - Registration assigns CLIENT, stays pending and does not start a trial
+  ---
+  duration_ms: 17.823462
+  type: 'test'
+  ...
+# Subtest: Client cannot approve, grant a license or list other businesses
+ok 65 - Client cannot approve, grant a license or list other businesses
+  ---
+  duration_ms: 14.171485
+  type: 'test'
+  ...
+# Subtest: Trial starts on first lease and lasts exactly 24 hours
+ok 66 - Trial starts on first lease and lasts exactly 24 hours
+  ---
+  duration_ms: 38.962062
+  type: 'test'
+  ...
+# Subtest: A fresh device and login do not reset a business trial
+ok 67 - A fresh device and login do not reset a business trial
+  ---
+  duration_ms: 17.855023
+  type: 'test'
+  ...
+# Subtest: A second sector stays locked during trial and paid activation
+ok 68 - A second sector stays locked during trial and paid activation
+  ---
+  duration_ms: 13.102823
+  type: 'test'
+  ...
+# Subtest: weekly starts at activation with the correct duration
+ok 69 - weekly starts at activation with the correct duration
+  ---
+  duration_ms: 12.989656
+  type: 'test'
+  ...
+# Subtest: monthly starts at activation with the correct duration
+ok 70 - monthly starts at activation with the correct duration
+  ---
+  duration_ms: 11.989747
+  type: 'test'
+  ...
+# Subtest: yearly starts at activation with the correct duration
+ok 71 - yearly starts at activation with the correct duration
+  ---
+  duration_ms: 10.865239
+  type: 'test'
+  ...
+# Subtest: permanent starts at activation with the correct duration
+ok 72 - permanent starts at activation with the correct duration
+  ---
+  duration_ms: 33.080596
+  type: 'test'
+  ...
+# Subtest: Payment approval and approved business are required
+ok 73 - Payment approval and approved business are required
+  ---
+  duration_ms: 16.674759
+  type: 'test'
+  ...
+# Subtest: Activation code is tied to its business and sector
+ok 74 - Activation code is tied to its business and sector
+  ---
+  duration_ms: 26.027572
+  type: 'test'
+  ...
+# Subtest: Paid panel binds to one device; device reset preserves expiry
+ok 75 - Paid panel binds to one device; device reset preserves expiry
+  ---
+  duration_ms: 58.567419
+  type: 'test'
+  ...
+# Subtest: Suspend denies a new lease; permanent resume preserves expiry
+ok 76 - Suspend denies a new lease; permanent resume preserves expiry
+  ---
+  duration_ms: 29.602854
+  type: 'test'
+  ...
+# Subtest: Extension retains remaining time and cannot downgrade permanent
+ok 77 - Extension retains remaining time and cannot downgrade permanent
+  ---
+  duration_ms: 15.340365
+  type: 'test'
+  ...
+# Subtest: Role and session are checked again at mutation time
+ok 78 - Role and session are checked again at mutation time
+  ---
+  duration_ms: 46.363643
+  type: 'test'
+  ...
+# Subtest: Session stores a token hash and logout revokes it
+ok 79 - Session stores a token hash and logout revokes it
+  ---
+  duration_ms: 14.534685
+  type: 'test'
+  ...
+# Subtest: A password reset revokes the remembered session and queued principal
+ok 80 - A password reset revokes the remembered session and queued principal
+  ---
+  duration_ms: 16.641472
+  type: 'test'
+  ...
+# Subtest: Lease signature binds business, device, role and module
+ok 81 - Lease signature binds business, device, role and module
+  ---
+  duration_ms: 22.068102
+  type: 'test'
+  ...
+# Subtest: No consent blocks summaries; withdrawal deletes existing summaries
+ok 82 - No consent blocks summaries; withdrawal deletes existing summaries
+  ---
+  duration_ms: 51.08062
+  type: 'test'
+  ...
+# Subtest: Summary rejects invalid dates, totals and unused panels
+ok 83 - Summary rejects invalid dates, totals and unused panels
+  ---
+  duration_ms: 15.535359
+  type: 'test'
+  ...
+# Subtest: Failed attempts persist and trigger the login rate limit
+ok 84 - Failed attempts persist and trigger the login rate limit
+  ---
+  duration_ms: 8.774907
+  type: 'test'
+  ...
+# Subtest: Persistence failure never reports success and locks operations
+ok 85 - Persistence failure never reports success and locks operations
+  ---
+  duration_ms: 13.64148
+  type: 'test'
+  ...
+# Subtest: Trial and signing identity survive a database reopen
+ok 86 - Trial and signing identity survive a database reopen
+  ---
+  duration_ms: 58.24626
+  type: 'test'
+  ...
+# Subtest: Owner password opens every panel without a customer license or snapshot write
+ok 87 - Owner password opens every panel without a customer license or snapshot write
+  ---
+  duration_ms: 9.447956
+  type: 'test'
+  ...
+(node:15773) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: An owner lease still checks revocation and a client cannot forge the owner role
+ok 88 - An owner lease still checks revocation and a client cannot forge the owner role
+  ---
+  duration_ms: 12.763459
+  type: 'test'
+  ...
+# Subtest: Market deducts product stock and keeps historical sale cost
+ok 89 - Market deducts product stock and keeps historical sale cost
+  ---
+  duration_ms: 1.740916
+  type: 'test'
+  ...
+# Subtest: restaurant deducts recipe materials and preserves cost
+ok 90 - restaurant deducts recipe materials and preserves cost
+  ---
+  duration_ms: 1.115748
+  type: 'test'
+  ...
+# Subtest: cafe deducts recipe materials and preserves cost
+ok 91 - cafe deducts recipe materials and preserves cost
+  ---
+  duration_ms: 1.872777
+  type: 'test'
+  ...
+# Subtest: Insufficient stock fails without a partial deduction
+ok 92 - Insufficient stock fails without a partial deduction
+  ---
+  duration_ms: 0.844482
+  type: 'test'
+  ...
+# Subtest: Duplicate sale ID cannot charge or deduct twice
+ok 93 - Duplicate sale ID cannot charge or deduct twice
+  ---
+  duration_ms: 0.618476
+  type: 'test'
+  ...
+# Subtest: Cancellation restores exact stock once and excludes revenue
+ok 94 - Cancellation restores exact stock once and excludes revenue
+  ---
+  duration_ms: 1.170519
+  type: 'test'
+  ...
+# Subtest: Credit, collection and cancellation keep the account balance
+ok 95 - Credit, collection and cancellation keep the account balance
+  ---
+  duration_ms: 1.375927
+  type: 'test'
+  ...
+# Subtest: Credit requires an account; collection cannot exceed debt
+ok 96 - Credit requires an account; collection cannot exceed debt
+  ---
+  duration_ms: 1.38622
+  type: 'test'
+  ...
+# Subtest: Order leaves stock intact; payment removes it once
+ok 97 - Order leaves stock intact; payment removes it once
+  ---
+  duration_ms: 1.095611
+  type: 'test'
+  ...
+# Subtest: Backup scope and historical totals are checked
+ok 98 - Backup scope and historical totals are checked
+  ---
+  duration_ms: 0.862915
+  type: 'test'
+  ...
+# Subtest: Summary includes totals only
+ok 99 - Summary includes totals only
+  ---
+  duration_ms: 0.594951
+  type: 'test'
+  ...
+# Subtest: Barcode is unique and invalid recipes fail
+ok 100 - Barcode is unique and invalid recipes fail
+  ---
+  duration_ms: 1.910677
+  type: 'test'
+  ...
+# Subtest: Zero, negative and excessive precision quantities fail
+ok 101 - Zero, negative and excessive precision quantities fail
+  ---
+  duration_ms: 1.685868
+  type: 'test'
+  ...
+# Subtest: Settings and sales keep the same authorized private frame
+ok 102 - Settings and sales keep the same authorized private frame
+  ---
+  duration_ms: 28.429655
+  type: 'test'
+  ...
+# Subtest: A sector round trip opens a new private bridge with the current owner session
+ok 103 - A sector round trip opens a new private bridge with the current owner session
+  ---
+  duration_ms: 50.629199
+  type: 'test'
+  ...
+# Subtest: A delayed old bridge cannot close or replace the current private store
+ok 104 - A delayed old bridge cannot close or replace the current private store
+  ---
+  duration_ms: 26.878873
+  type: 'test'
+  ...
+# Subtest: The menu has all eight prices, including 680 TL family and 180 TL Doritos mega
+ok 105 - The menu has all eight prices, including 680 TL family and 180 TL Doritos mega
+  ---
+  duration_ms: 1649.37289
+  type: 'test'
+  ...
+# Subtest: The menu migration preserves history, passwords and stock and runs once
+ok 106 - The menu migration preserves history, passwords and stock and runs once
+  ---
+  duration_ms: 1259.024122
+  type: 'test'
+  ...
+# Subtest: The private panel loads the actual migrated menu with no render exception
+ok 107 - The private panel loads the actual migrated menu with no render exception
+  ---
+  duration_ms: 1139.261848
+  type: 'test'
+  ...
+# Subtest: A signed offline permit rejects changed data, another owner, another device and expiry
+ok 108 - A signed offline permit rejects changed data, another owner, another device and expiry
+  ---
+  duration_ms: 27.925894
+  type: 'test'
+  ...
+# Subtest: An offline cash sale is durable before confirmation and survives store reopen
+ok 109 - An offline cash sale is durable before confirmation and survives store reopen
+  ---
+  duration_ms: 32.645378
+  type: 'test'
+  ...
+# Subtest: Two offline sales synchronize once each, retain totals and deduct only dough
+ok 110 - Two offline sales synchronize once each, retain totals and deduct only dough
+  ---
+  duration_ms: 99.251838
+  type: 'test'
+  ...
+# Subtest: A lost success response retries the same operation without a second charge record
+ok 111 - A lost success response retries the same operation without a second charge record
+  ---
+  duration_ms: 57.579785
+  type: 'test'
+  ...
+# Subtest: A stale browser tab cannot replace or duplicate a durable queued sale
+ok 112 - A stale browser tab cannot replace or duplicate a durable queued sale
+  ---
+  duration_ms: 36.432489
+  type: 'test'
+  ...
+# Subtest: A new purchase cannot revise the cost of an earlier queued sale
+ok 113 - A new purchase cannot revise the cost of an earlier queued sale
+  ---
+  duration_ms: 78.981909
+  type: 'test'
+  ...
+# Subtest: Two devices can keep paid sales of the last stock and show the stock shortfall
+ok 114 - Two devices can keep paid sales of the last stock and show the stock shortfall
+  ---
+  duration_ms: 40.933394
+  type: 'test'
+  ...
+# Subtest: A stock receipt pays off the offline deficit before exposing available stock
+ok 115 - A stock receipt pays off the offline deficit before exposing available stock
+  ---
+  duration_ms: 56.855982
+  type: 'test'
+  ...
+# Subtest: A forged old price or changed signed base cannot enter the server ledger
+ok 116 - A forged old price or changed signed base cannot enter the server ledger
+  ---
+  duration_ms: 27.477404
+  type: 'test'
+  ...
+# Subtest: Expiry stops new offline payments while preserving already paid queue records
+ok 117 - Expiry stops new offline payments while preserving already paid queue records
+  ---
+  duration_ms: 90.140271
+  type: 'test'
+  ...
+# Subtest: Administrative writes wait for queued payments and preserve the queue backup
+ok 118 - Administrative writes wait for queued payments and preserve the queue backup
+  ---
+  duration_ms: 17.450702
+  type: 'test'
+  ...
+# Subtest: The real private checkout clears its basket only after durable offline storage
+ok 119 - The real private checkout clears its basket only after durable offline storage
+  ---
+  duration_ms: 1261.26572
+  type: 'test'
+  ...
+# Subtest: Device storage failure cannot confirm payment or send it to the server
+ok 120 - Device storage failure cannot confirm payment or send it to the server
+  ---
+  duration_ms: 15.517686
+  type: 'test'
+  ...
+# Subtest: A sale captured before permit expiry can synchronize after a new login
+ok 121 - A sale captured before permit expiry can synchronize after a new login
+  ---
+  duration_ms: 14.772874
+  type: 'test'
+  ...
+# Subtest: An offline sale linked to a closed register keeps its original cash record and flags it
+ok 122 - An offline sale linked to a closed register keeps its original cash record and flags it
+  ---
+  duration_ms: 16.317446
+  type: 'test'
+  ...
+# Subtest: A delayed server ACK keeps a second sale written during synchronization
+ok 123 - A delayed server ACK keeps a second sale written during synchronization
+  ---
+  duration_ms: 37.018115
+  type: 'test'
+  ...
+# Subtest: Cancellation settles a stock shortfall and restores the original sale cost
+ok 124 - Cancellation settles a stock shortfall and restores the original sale cost
+  ---
+  duration_ms: 23.082222
+  type: 'test'
+  ...
+# Subtest: A changed table order remains open when an earlier offline payment synchronizes
+ok 125 - A changed table order remains open when an earlier offline payment synchronizes
+  ---
+  duration_ms: 20.851919
+  type: 'test'
+  ...
+# Subtest: An unreadable 403 retains a saved private edit and recovers it after store reopen
+ok 126 - An unreadable 403 retains a saved private edit and recovers it after store reopen
+  ---
+  duration_ms: 20.640538
+  type: 'test'
+  ...
+# Subtest: An unreadable 403 retains a paid offline sale and retries the same record once
+ok 127 - An unreadable 403 retains a paid offline sale and retries the same record once
+  ---
+  duration_ms: 27.251472
+  type: 'test'
+  ...
+# Subtest: A backup cannot inflate stock through a changed cancellation movement
+ok 128 - A backup cannot inflate stock through a changed cancellation movement
+  ---
+  duration_ms: 0.866548
+  type: 'test'
+  ...
+# Subtest: A backup cannot omit a sale stock movement
+ok 129 - A backup cannot omit a sale stock movement
+  ---
+  duration_ms: 0.517067
+  type: 'test'
+  ...
+# Subtest: A backup cannot repeat a sale stock movement
+ok 130 - A backup cannot repeat a sale stock movement
+  ---
+  duration_ms: 0.329092
+  type: 'test'
+  ...
+# Subtest: A recipe backup cannot change the recorded material use
+ok 131 - A recipe backup cannot change the recorded material use
+  ---
+  duration_ms: 0.357525
+  type: 'test'
+  ...
+# Subtest: A backup cannot have duplicate barcodes
+ok 132 - A backup cannot have duplicate barcodes
+  ---
+  duration_ms: 0.299297
+  type: 'test'
+  ...
+# Subtest: A backup rejects markup in record IDs before the UI uses them
+ok 133 - A backup rejects markup in record IDs before the UI uses them
+  ---
+  duration_ms: 0.239748
+  type: 'test'
+  ...
+# Subtest: A backup rejects impossible stock balances
+ok 134 - A backup rejects impossible stock balances
+  ---
+  duration_ms: 0.225637
+  type: 'test'
+  ...
+# Subtest: Valid fractional purchases, cancellation and frozen cost still restore
+ok 135 - Valid fractional purchases, cancellation and frozen cost still restore
+  ---
+  duration_ms: 0.664502
+  type: 'test'
+  ...
+# Subtest: Registration rejects passwords that bcrypt would truncate
+ok 136 - Registration rejects passwords that bcrypt would truncate
+  ---
+  duration_ms: 1.678577
+  type: 'test'
+  ...
+# Subtest: A renewal before first activation retains all purchased days
+ok 137 - A renewal before first activation retains all purchased days
+  ---
+  duration_ms: 38.056476
+  type: 'test'
+  ...
+# Subtest: The license migration retains the duration of an existing unactivated license
+ok 138 - The license migration retains the duration of an existing unactivated license
+  ---
+  duration_ms: 2.08728
+  type: 'test'
+  ...
+# Subtest: A staff invitation is single use and its secrets are absent from the owner list
+ok 139 - A staff invitation is single use and its secrets are absent from the owner list
+  ---
+  duration_ms: 785.53419
+  type: 'test'
+  ...
+# Subtest: An unapproved first device cannot read shop records or make a sale
+ok 140 - An unapproved first device cannot read shop records or make a sale
+  ---
+  duration_ms: 6.554359
+  type: 'test'
+  ...
+# Subtest: Approval checks the current owner and the code on the requested device
+ok 141 - Approval checks the current owner and the code on the requested device
+  ---
+  duration_ms: 5.035761
+  type: 'test'
+  ...
+# Subtest: Sharing a staff login with a second device creates another pending request
+ok 142 - Sharing a staff login with a second device creates another pending request
+  ---
+  duration_ms: 5.82229
+  type: 'test'
+  ...
+# Subtest: A staff token cannot authenticate as OWNER or be used on another device
+ok 143 - A staff token cannot authenticate as OWNER or be used on another device
+  ---
+  duration_ms: 4.327321
+  type: 'test'
+  ...
+# Subtest: Another owner cannot list or approve this owner staff devices
+ok 144 - Another owner cannot list or approve this owner staff devices
+  ---
+  duration_ms: 5.357409
+  type: 'test'
+  ...
+# Subtest: The staff view excludes passwords, costs, customers and detailed past sales
+ok 145 - The staff view excludes passwords, costs, customers and detailed past sales
+  ---
+  duration_ms: 7.355901
+  type: 'test'
+  ...
+# Subtest: An approved staff sale uses server prices and costs and deducts only dough once
+ok 146 - An approved staff sale uses server prices and costs and deducts only dough once
+  ---
+  duration_ms: 13.081857
+  type: 'test'
+  ...
+# Subtest: Staff cannot change a price, overpay, use credit, forge quantity or reuse a sale ID
+ok 147 - Staff cannot change a price, overpay, use credit, forge quantity or reuse a sale ID
+  ---
+  duration_ms: 12.679813
+  type: 'test'
+  ...
+# Subtest: Closing a device stops new sales while its accepted receipt remains verifiable
+ok 148 - Closing a device stops new sales while its accepted receipt remains verifiable
+  ---
+  duration_ms: 9.343605
+  type: 'test'
+  ...
+# Subtest: Closing the whole staff grant blocks all its approved devices
+ok 149 - Closing the whole staff grant blocks all its approved devices
+  ---
+  duration_ms: 4.725612
+  type: 'test'
+  ...
+# Subtest: An expired invitation, expired session and logout cannot grant access
+ok 150 - An expired invitation, expired session and logout cannot grant access
+  ---
+  duration_ms: 4.886378
+  type: 'test'
+  ...
+# Subtest: Persistence failure is never reported as successful staff approval
+ok 151 - Persistence failure is never reported as successful staff approval
+  ---
+  duration_ms: 4.382227
+  type: 'test'
+  ...
+# Subtest: Two approved devices cannot make online sales of the same last dough stock
+ok 152 - Two approved devices cannot make online sales of the same last dough stock
+  ---
+  duration_ms: 14.505075
+  type: 'test'
+  ...
+# Subtest: A new purchase does not change an earlier staff sale cost
+ok 153 - A new purchase does not change an earlier staff sale cost
+  ---
+  duration_ms: 10.734073
+  type: 'test'
+  ...
+# Subtest: A pending staff payment survives reopen and rejects another tab payment
+ok 154 - A pending staff payment survives reopen and rejects another tab payment
+  ---
+  duration_ms: 2.837651
+  type: 'test'
+  ...
+# Subtest: An invalid staff payment response preserves the pending operation and basket
+ok 155 - An invalid staff payment response preserves the pending operation and basket
+  ---
+  duration_ms: 1.297529
+  type: 'test'
+  ...
+# Subtest: Staff approvals, blocked devices and token binding survive a database reopen
+ok 156 - Staff approvals, blocked devices and token binding survive a database reopen
+  ---
+  duration_ms: 8.674262
+  type: 'test'
+  ...
+# Subtest: Registered owner routes reject staff tokens, including private HTML and cloud writes
+ok 157 - Registered owner routes reject staff tokens, including private HTML and cloud writes
+  ---
+  duration_ms: 6.744355
+  type: 'test'
+  ...
+# Subtest: Registered staff routes enforce pending approval and expose requests to the owner
+ok 158 - Registered staff routes enforce pending approval and expose requests to the owner
+  ---
+  duration_ms: 8.83563
+  type: 'test'
+  ...
+# Subtest: Registered staff routes reject a forged owner token and another device
+ok 159 - Registered staff routes reject a forged owner token and another device
+  ---
+  duration_ms: 5.550698
+  type: 'test'
+  ...
+# Subtest: The real staff UI requires approval, records a sale and hides shop records after blocking
+ok 160 - The real staff UI requires approval, records a sale and hides shop records after blocking
+  ---
+  duration_ms: 137.025831
+  type: 'test'
+  ...
+# Subtest: The real staff UI retains a lost payment ACK and recovers the same sale once
+ok 161 - The real staff UI retains a lost payment ACK and recovers the same sale once
+  ---
+  duration_ms: 107.709297
+  type: 'test'
+  ...
+# Subtest: A device block between the access check and sales read hides cached shop records
+ok 162 - A device block between the access check and sales read hides cached shop records
+  ---
+  duration_ms: 65.736665
+  type: 'test'
+  ...
+# Subtest: An authoritative payment denial hides shop records and retains the unpaid basket
+ok 163 - An authoritative payment denial hides shop records and retains the unpaid basket
+  ---
+  duration_ms: 92.19037
+  type: 'test'
+  ...
+# Subtest: A denied access check preserves a sale with a lost ACK and recovers its receipt after blocking
+ok 164 - A denied access check preserves a sale with a lost ACK and recovers its receipt after blocking
+  ---
+  duration_ms: 126.473235
+  type: 'test'
+  ...
+# Subtest: An expired staff session hides shop records and keeps the durable basket
+ok 165 - An expired staff session hides shop records and keeps the durable basket
+  ---
+  duration_ms: 57.016502
+  type: 'test'
+  ...
+# Subtest: A session that expires before payment requests a new login and preserves the unpaid basket
+ok 166 - A session that expires before payment requests a new login and preserves the unpaid basket
+  ---
+  duration_ms: 65.015336
+  type: 'test'
+  ...
+# Subtest: An unreadable payment 403 locks further payment and preserves the paid operation for lookup
+ok 167 - An unreadable payment 403 locks further payment and preserves the paid operation for lookup
+  ---
+  duration_ms: 104.206845
+  type: 'test'
+  ...
+# Subtest: The real owner approval view keeps device codes separate and escapes device labels
+ok 168 - The real owner approval view keeps device codes separate and escapes device labels
+  ---
+  duration_ms: 23.65086
+  type: 'test'
+  ...
+# Subtest: Concurrent sales serialize stock checks and reject the second oversale
+ok 169 - Concurrent sales serialize stock checks and reject the second oversale
+  ---
+  duration_ms: 1.839007
+  type: 'test'
+  ...
+# Subtest: A stale restore and a corrupt restore both leave the saved state intact
+ok 170 - A stale restore and a corrupt restore both leave the saved state intact
+  ---
+  duration_ms: 1.584067
+  type: 'test'
+  ...
+# Subtest: Optional product photos reject executable or remote URLs and keep old backups valid
+ok 171 - Optional product photos reject executable or remote URLs and keep old backups valid
+  ---
+  duration_ms: 2.397518
+  type: 'test'
+  ...
+# Subtest: A command rejects a record saved under the wrong business key
+ok 172 - A command rejects a record saved under the wrong business key
+  ---
+  duration_ms: 1.792405
+  type: 'test'
+  ...
+1..172
+# tests 172
+# suites 0
+# pass 172
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 11474.049022

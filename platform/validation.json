@@ -1,0 +1,238 @@
+{
+  "createdAt": "2026-10-09T04:11:46.485962+00:00",
+  "release": "AESD 1.5.1 private menu and offline checkout",
+  "productionReady": false,
+  "perfectionClaim": false,
+  "tests": {
+    "platform_cloud_menu_offline": {
+      "tests": 100,
+      "pass": 100,
+      "fail": 0
+    },
+    "private_panel": {
+      "tests": 61,
+      "pass": 61,
+      "fail": 0
+    },
+    "recovery_isolated": {
+      "tests": 16,
+      "pass": 16,
+      "fail": 0
+    }
+  },
+  "automaticTestsPassedThisRound": 177,
+  "automaticTestsPassed": 177,
+  "newMenuOfflineTestsPassed": 21,
+  "browserChecksPassedThisRound": 0,
+  "browserSuiteRerunThisRound": false,
+  "browserStatus": "blocked by sandbox network restrictions: server and Chromium could not start",
+  "previousBrowserChecksArchive": 92,
+  "previousPostgresTestsArchive": 7,
+  "realAndroid": false,
+  "realIPhone": false,
+  "androidEmulatorAvailable": false,
+  "apks": [
+    {
+      "file": "AESD-SAHIP-v1.5.1-SON-KONTROL.apk",
+      "audience": "owner",
+      "package": "com.oses.pos",
+      "label": "AESD Sahip",
+      "versionCode": 151,
+      "sha256": "beab37d7f41d10a13a12d63c6ed843456a98ec7b65b2dcdcabddce5395fbd2e0",
+      "bytes": 7410040,
+      "certificate_sha256": "ccc5e236fd30d0a395d49121bf1129a905a0ccf9fc952242eb920c8a8e04e2d9",
+      "signatures": [
+        1,
+        2,
+        3
+      ],
+      "zipalign": true,
+      "source_match": true,
+      "android_runtime_tested": false,
+      "production_backend_deployed": true,
+      "private_source_present": true,
+      "camera_permission": true,
+      "backendCommit": "ce2eb4bd930d388ed8951a923ab4c35fea4452fb"
+    },
+    {
+      "file": "AESD-MUSTERI-v1.5.1-SON-KONTROL.apk",
+      "audience": "customer",
+      "package": "com.aesd.pos",
+      "label": "AESD",
+      "versionCode": 151,
+      "sha256": "ebecbdbe985cccc860e1100ca437823feb16ab7f4585daeaa4bc49292687f172",
+      "bytes": 3022907,
+      "certificate_sha256": "ccc5e236fd30d0a395d49121bf1129a905a0ccf9fc952242eb920c8a8e04e2d9",
+      "signatures": [
+        1,
+        2,
+        3
+      ],
+      "zipalign": true,
+      "source_match": true,
+      "android_runtime_tested": false,
+      "production_backend_deployed": true,
+      "private_source_present": false,
+      "camera_permission": true,
+      "backendCommit": "ce2eb4bd930d388ed8951a923ab4c35fea4452fb"
+    }
+  ],
+  "privateTemplateMatch": {
+    "status": "passed",
+    "originalGitBlob": "c0a4cb30c506cfe5f53c29f0af70ba7d0d0c0169",
+    "patchedSha256": "bd91fd0f6748d00d6c9de8b93b350cb19467cd55d6bb541d687b97855b42b953",
+    "idempotent": true,
+    "localMatchesServerTransformation": true
+  },
+  "backendDeployment": {
+    "commit": {
+      "createdAt": "2026-10-09T04:08:50Z",
+      "id": "ce2eb4bd930d388ed8951a923ab4c35fea4452fb",
+      "message": "Refresh the private menu after pending operation recovery\n\nRead the shared record after first device setup. This keeps the signed offline baseline and the displayed menu aligned after an older pending operation is recovered."
+    },
+    "createdAt": "2026-10-09T04:09:21.365104Z",
+    "finishedAt": "2026-10-09T04:09:59.980308Z",
+    "id": "dep-db46hse0tbcc73cno5t0",
+    "startedAt": "2026-10-09T04:09:21.335657Z",
+    "status": "live",
+    "trigger": "new_commit",
+    "updatedAt": "2026-10-09T04:10:28.911547Z"
+  },
+  "backendCommit": "ce2eb4bd930d388ed8951a923ab4c35fea4452fb",
+  "menu": [
+    [
+      "Çiğköfte Dürüm",
+      "100 gr",
+      "100 TL"
+    ],
+    [
+      "Doritoslu Dürüm",
+      "100 gr",
+      "130 TL"
+    ],
+    [
+      "Mega Dürüm",
+      "150 gr",
+      "150 TL"
+    ],
+    [
+      "Doritoslu Mega Dürüm",
+      "150 gr",
+      "180 TL"
+    ],
+    [
+      "Küçük Paket",
+      "300 gr",
+      "230 TL"
+    ],
+    [
+      "Orta Paket",
+      "500 gr",
+      "370 TL"
+    ],
+    [
+      "Büyük Paket",
+      "750 gr",
+      "630 TL"
+    ],
+    [
+      "Aile Boyu Paket",
+      "1000 gr",
+      "680 TL"
+    ]
+  ],
+  "ui": {
+    "scope": "owner private panel",
+    "yellowRed": true,
+    "photoAtlasBytes": 3235863,
+    "generatedRepresentativeProductPhotos": true,
+    "photosMatchProvidedPhotosExactly": false,
+    "newPrivateHtmlBytes": 2714372,
+    "oldPrivateHtmlBytes": 5935474,
+    "physicalDevicePerformanceMeasured": false
+  },
+  "offline": {
+    "scope": "owner private panel only",
+    "durableBeforeSuccess": true,
+    "storage": "IndexedDB strict transaction when supported",
+    "signedBaseline": "Ed25519 signed state hash, owner, panel, device and 24-hour window",
+    "newSalePermitHours": 24,
+    "maxQueuedSales": 500,
+    "autoSync": true,
+    "permanentOperationId": true,
+    "lostAckRetry": true,
+    "lateAckKeepsNewSale": true,
+    "pastCostSnapshotPreserved": true,
+    "onlyDoughDeducted": true,
+    "paidStockConflictRetainedAndFlagged": true,
+    "stockDeficitSettledBeforeAvailableStock": true,
+    "changedTableOrderPreserved": true,
+    "closedRegisterFlagged": true,
+    "expiredPermitKeepsPaidQueue": true,
+    "queuedRecordBackupIncluded": true,
+    "automaticQueueBackupRestoreUi": false,
+    "nativeQueueBackupShareImplemented": true,
+    "nativeQueueBackupShareTested": false,
+    "webServiceWorkerImplemented": true,
+    "webColdOfflineLaunchTested": false,
+    "physicalStorageDurabilityTested": false
+  },
+  "costs": {
+    "doritosPortionCostProvided": false,
+    "missingIngredientCostNotInvented": true,
+    "laterPurchasesDoNotReviseSaleCost": true
+  },
+  "preserved": {
+    "package": "com.oses.pos",
+    "versionCode": 151,
+    "signatureCertificate": "ccc5e236fd30d0a395d49121bf1129a905a0ccf9fc952242eb920c8a8e04e2d9",
+    "userSecurityAndFinancialHistory": true,
+    "customerPanelLicensePolicy": true,
+    "customerCannotOpenOwnerHtml": true,
+    "detailedCustomerLedgerNotShownInOwnerLicenseApi": true,
+    "summarySharingRequiresCustomerConsent": true
+  },
+  "userPreviouslyConfirmedSharedWebTabletView": true,
+  "realUserLedgerInspectedThisRound": false,
+  "realMailSentThisRound": false,
+  "priorInboxDeliveryConfirmedByUser": true,
+  "notConnected": [
+    "SMS provider",
+    "Bank payment provider",
+    "Purchased domain"
+  ],
+  "notTestedThisRound": [
+    "New Chromium layout and viewport checks",
+    "New Postgres offline-event integration over a real network",
+    "Native HTTP suite over TCP",
+    "Physical Android installation, crash and restart",
+    "Physical iPhone Safari and offline home screen launch",
+    "Physical camera or barcode reader",
+    "Native pending-sale backup sharing",
+    "Disaster recovery restore from the queue backup"
+  ],
+  "hostingPlan": "free",
+  "hostingMaySleep": true,
+  "writing": "ASD-STE100 writing principles; no certification claim",
+  "remainingLimits": [
+    "Only the owner private panel supports new offline sales",
+    "First login and authorization require internet",
+    "Device or browser data deletion can remove unsynced sales",
+    "Queue backups are not encrypted and have no automatic restore UI",
+    "JSON panel data remains limited to 16 MB",
+    "Doritos cost needs the actual supplier price",
+    "Current browser and physical device acceptance checks are incomplete"
+  ],
+  "latestWebReview": {
+    "date": "2026-10-09",
+    "scope": "Staff device approval",
+    "automaticTestsPassed": 188,
+    "evidence": "evidence/staff-validation.json",
+    "report": "docs/STAFF-DEVICE-APPROVAL.md",
+    "newApkBuilt": false,
+    "realIphoneTest": false
+  },
+  "historical": true,
+  "currentSourceChecks": "evidence/SIX-MODULES-20261017.md",
+  "note": "This file describes the historical 1.5.1 artifact. It is not a current release certificate."
+}

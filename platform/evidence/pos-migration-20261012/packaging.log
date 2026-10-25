@@ -1,0 +1,20 @@
+test_changed_lease_key_blocks_build (__main__.ApkPackagingChecks.test_changed_lease_key_blocks_build) ... ok
+test_customer_bundle_excludes_owner_and_staff_sources (__main__.ApkPackagingChecks.test_customer_bundle_excludes_owner_and_staff_sources) ... ok
+test_different_live_commit_does_not_claim_current_backend (__main__.ApkPackagingChecks.test_different_live_commit_does_not_claim_current_backend) ... ok
+test_matching_fresh_deployment_keeps_http_check_separate (__main__.ApkPackagingChecks.test_matching_fresh_deployment_keeps_http_check_separate) ... ok
+test_missing_product_photo_blocks_build (__main__.ApkPackagingChecks.test_missing_product_photo_blocks_build) ... ok
+test_missing_transitive_module_blocks_build (__main__.ApkPackagingChecks.test_missing_transitive_module_blocks_build) ... ok
+test_no_evidence_does_not_claim_current_backend (__main__.ApkPackagingChecks.test_no_evidence_does_not_claim_current_backend) ... ok
+test_old_health_record_does_not_claim_current_backend (__main__.ApkPackagingChecks.test_old_health_record_does_not_claim_current_backend) ... ok
+test_owner_bundle_has_staff_controls_and_complete_dependencies (__main__.ApkPackagingChecks.test_owner_bundle_has_staff_controls_and_complete_dependencies) ... ok
+test_path_traversal_is_rejected (__main__.ApkPackagingChecks.test_path_traversal_is_rejected) ... ok
+test_private_key_marker_blocks_build (__main__.ApkPackagingChecks.test_private_key_marker_blocks_build) ... ok
+test_private_owner_html_in_customer_bundle_blocks_build (__main__.ApkPackagingChecks.test_private_owner_html_in_customer_bundle_blocks_build) ... ok
+test_source_changed_after_deployment_does_not_claim_current_backend (__main__.ApkPackagingChecks.test_source_changed_after_deployment_does_not_claim_current_backend) ... ok
+test_stale_deployment_record_does_not_claim_current_backend (__main__.ApkPackagingChecks.test_stale_deployment_record_does_not_claim_current_backend) ... ok
+test_unrelated_server_does_not_claim_current_backend (__main__.ApkPackagingChecks.test_unrelated_server_does_not_claim_current_backend) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 1.454s
+
+OK

@@ -1,0 +1,95 @@
+/* Shared theme tokens. Brand green matches the Server monogram and PWA manifest. */
+:root{
+  --brand:#00843D;
+  --brand-ink:#006833;
+  --brand-soft:#e8f6ee;
+  --brand-deep:#045c2c;
+  --danger:#b42318;
+  --danger-soft:#fef3f2;
+  --canvas:#eef3ef;
+  --surface:#ffffff;
+  --ink:#14231a;
+  --muted:#3f5a4a;
+  --line:#d5e3da;
+  --soft:#e7f0ea;
+  --green:var(--brand);
+  --red:var(--danger);
+  --amber:#9a6700;
+  --panel:var(--surface);
+  --focus:color-mix(in srgb,var(--brand) 45%,transparent);
+}
+:root[data-theme=dark]{
+  --brand:#3dcf7a;
+  --brand-ink:#8aefb0;
+  --brand-soft:#143525;
+  --brand-deep:#062416;
+  --danger:#ff8a96;
+  --danger-soft:#3a1d24;
+  --canvas:#0c1410;
+  --surface:#152019;
+  --ink:#e8f4ec;
+  --muted:#a7c2b2;
+  --line:#2a4034;
+  --soft:#1c2c23;
+  --green:var(--brand);
+  --red:var(--danger);
+  --amber:#f2c363;
+  --panel:var(--surface);
+  color-scheme:dark;
+}
+body{background:var(--canvas);color:var(--ink)}
+.card,.top,.product,.tile,dialog,.panel-choices button,.oc-header,.oc-bottom-nav,.oc-group,.oc-sidebar,.oc-sheet{background:var(--surface);color:var(--ink);border-color:var(--line)}
+input,select,textarea,button{color:var(--ink);border-color:var(--line)}
+input,select,textarea,button:not(.primary):not(.tab-active):not(.selected):not(.danger){background:var(--surface)}
+small,.muted,.contact,.note,.basket-note,.oc-hint,.oc-data>span,.oc-data small,.stat span,.stat small{color:var(--muted)}
+.badge,.quantity button,.code,.oc-context,.oc-preview,.dialog-top button{background:var(--soft);color:var(--ink)}
+.primary,.tabs .tab-active{background:var(--brand)!important;color:#fff!important;border-color:var(--brand)!important;box-shadow:0 8px 20px color-mix(in srgb,var(--brand) 28%,transparent)}
+.primary:hover{background:var(--brand-ink)!important;border-color:var(--brand-ink)!important}
+.selected{border-color:var(--brand)!important;background:var(--brand-soft)!important;color:var(--brand-ink)!important}
+.good{color:var(--brand-ink)}
+.brand em{color:var(--brand)}
+a{color:var(--brand-ink)}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--focus);border-color:var(--brand)}
+input[type=checkbox]{accent-color:var(--brand)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--brand);outline-offset:3px}
+.danger{color:var(--danger);background:var(--danger-soft);border-color:color-mix(in srgb,var(--danger) 35%,var(--line))}
+.error{color:var(--danger)}
+.stat:first-child{background:linear-gradient(125deg,var(--brand-soft),var(--surface));border-color:color-mix(in srgb,var(--brand) 28%,var(--line))}
+.stat:first-child strong{color:var(--brand-ink)}
+.product .price,.tile>.ui-icon,.product-plus{color:var(--brand);background:var(--brand)}.product-plus{color:#fff}
+.product .price{background:transparent}
+.tile>.ui-icon{background:transparent;color:var(--brand)}
+
+:root[data-theme=dark] .stat,:root[data-theme=dark] .stat:first-child,:root[data-theme=dark] .product-photo,:root[data-theme=dark] .private-shell .top,:root[data-theme=dark] .empty{background:var(--surface);color:var(--ink);border-color:var(--line)}
+:root[data-theme=dark] .owner-console,:root[data-theme=dark] .oc-shell,:root[data-theme=dark] .oc-content{background:var(--canvas);color:var(--ink)}
+:root[data-theme=dark] .owner-console{--oc-ink:var(--ink);--oc-muted:var(--muted);--oc-line:var(--line);--oc-bg:var(--canvas);--oc-accent:var(--brand)}
+:root[data-theme=dark] .owner-console .oc-top,:root[data-theme=dark] .owner-console .oc-nav,:root[data-theme=dark] .owner-console .oc-summary,:root[data-theme=dark] .owner-console .oc-search,:root[data-theme=dark] .owner-console .oc-row,:root[data-theme=dark] .owner-console .oc-link,:root[data-theme=dark] .owner-console .oc-group,:root[data-theme=dark] .owner-console .oc-context,:root[data-theme=dark] .oc-sheet{background:var(--surface);color:var(--ink);border-color:var(--line)}
+:root[data-theme=dark] .owner-console .oc-filters button:not(.selected),:root[data-theme=dark] .owner-console .oc-form input,:root[data-theme=dark] .owner-console .oc-form select,:root[data-theme=dark] .owner-console .oc-role,:root[data-theme=dark] .owner-console .oc-avatar,:root[data-theme=dark] .owner-console .oc-initial,:root[data-theme=dark] .owner-console .oc-preview,:root[data-theme=dark] .owner-console .oc-plans span{background:var(--soft);color:var(--ink);border-color:var(--line)}
+:root[data-theme=dark] .owner-console .green{background:#173f32;color:#8ee5be}
+:root[data-theme=dark] .owner-console .amber,:root[data-theme=dark] .owner-console .oc-notice{background:#49391b;color:#ffdc87}
+:root[data-theme=dark] .owner-console .red,:root[data-theme=dark] .owner-console .oc-notice.error{background:#4a2630;color:#ffabb7}
+:root[data-theme=dark] .owner-console .blue{background:#213b55;color:#a2d7ff}
+:root[data-theme=dark] .oc-badge.green{background:#173f32;color:#8ee5be}
+:root[data-theme=dark] .oc-badge.amber{background:#49391b;color:#ffdc87}
+:root[data-theme=dark] .oc-badge.red{background:#4a2630;color:#ffabb7}
+:root[data-theme=dark] .oc-badge.blue{background:#213b55;color:#a2d7ff}
+:root[data-theme=dark] a{color:#8fd9ad}
+:root[data-theme=dark] #web-install-tools{background:var(--surface);color:var(--ink);border-color:var(--line)}
+:root[data-theme=dark] #toast{background:#163c2e;color:#a6efcd;border-color:#36845e}
+:root[data-theme=dark] #toast[data-kind=error]{background:#442831;color:#ffc4ce;border-color:#ad6171}
+:root[data-theme=dark] .owner-console button:not(.primary){background:var(--surface);color:var(--ink);border-color:var(--line)}
+:root[data-theme=dark] .owner-console .oc-nav button{background:transparent;color:var(--muted)}
+:root[data-theme=dark] .owner-console .oc-nav button.selected,:root[data-theme=dark] .owner-console .oc-text{color:var(--brand)}
+:root[data-theme=dark] .brand{color:var(--ink)}
+:root[data-theme=dark] button.selected{background:var(--brand-soft)!important;color:var(--brand-ink)!important;border-color:var(--brand)!important}
+:root[data-theme=dark] .tabs,:root[data-theme=dark] .disclosure,:root[data-theme=dark] .account-card,:root[data-theme=dark] .panel-menu,:root[data-theme=dark] .panel-menu button,:root[data-theme=dark] .settings-group{background:var(--surface);color:var(--ink);border-color:var(--line)}
+:root[data-theme=dark] .auth-shell{background:radial-gradient(120% 80% at 50% -10%,#1a3d2a 0%,var(--canvas) 55%)}
+
+.account-steps{list-style:none;padding:0;display:grid;gap:12px}.account-steps li{display:flex;justify-content:space-between;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}.account-steps span{color:var(--muted);text-align:right}
+.sync-status{display:inline-flex;align-items:center;justify-content:center;gap:8px;color:var(--muted)}
+.sync-status::before{content:"";width:9px;height:9px;flex:0 0 9px;border-radius:50%;background:var(--amber)}
+.sync-status[data-sync-mode=synced]::before{background:var(--brand)}
+.sync-status[data-sync-mode=saving]::before,.sync-status[data-sync-mode=loading]::before{animation:aesd-sync-pulse 1.8s ease-in-out infinite}
+@keyframes aesd-sync-pulse{0%,100%{opacity:1}50%{opacity:.45}}
+@media(prefers-reduced-motion:reduce){.sync-status::before{animation:none!important}}
+@media(max-width:420px){.account-steps li{flex-wrap:wrap}.account-steps span{text-align:left}}

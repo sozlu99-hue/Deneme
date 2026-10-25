@@ -1,0 +1,19 @@
+
+> aesd-platform@1.5.1 test:private
+> node --experimental-vm-modules --test --test-isolation=none legacy-tests/tests/*.test.cjs
+
+(node:16183) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Private cloud sale appears on the second device and deducts only dough (8939.494496ms)
+✔ A stale private sale is rejected; the basket remains until a new confirmation (4561.8969ms)
+✔ Private cloud cancellation restores stock; later purchases retain past costs (2717.421472ms)
+✔ Private cloud prevents old backups and reset from replacing shared records (2231.751039ms)
+✔ A new private device uses the server owner password for cancellation and keeps its local hash (2016.629834ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 25995.596243

@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-10-18T04:03:26.416014+00:00",
+  "release": "AESD Server Web and APK sources 1.5.8",
+  "platformTests": {
+    "passed": 199,
+    "failed": 0
+  },
+  "rootTests": {
+    "passed": 5,
+    "failed": 0,
+    "skipped": 3,
+    "skipReason": "PostgreSQL integration runtime not configured"
+  },
+  "packagingTests": {
+    "passed": 15,
+    "failed": 0
+  },
+  "browserChecks": {
+    "passed": 83,
+    "failed": 0,
+    "groups": {
+      "panels": 28,
+      "authentication": 15,
+      "review": 12,
+      "pwa": 15,
+      "ownerConsole": 13
+    },
+    "records": "isolated synthetic accounts",
+    "widths": [
+      320,
+      390,
+      768,
+      1366
+    ]
+  },
+  "physicalAndroidTested": false,
+  "physicalIPhoneTested": false,
+  "realEmailTestedThisRelease": false,
+  "cariChanged": false,
+  "ownerCustomerMerged": false
+}

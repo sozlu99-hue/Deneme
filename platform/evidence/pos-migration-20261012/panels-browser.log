@@ -1,0 +1,29 @@
+GROUP tests/panels-browser.mjs
+PASS Panel selection retains the typed login details
+PASS A fresh owner opens the private panel with the server password alone
+PASS The private panel menu button opens the parent menu
+PASS Central login retains the legacy password store
+PASS Settings and sales retain one private frame without a new HTML download
+PASS The four-square menu has all owner panels and closes with Escape
+PASS The menu closes when the owner taps outside it
+PASS The owner opens market without a license and without sample sales
+PASS The owner opens restaurant without a license and without sample sales
+PASS The owner opens cafe without a license and without sample sales
+PASS The market panel uses the approved light design and its own catalog
+PASS The restaurant panel uses the approved light design and its own catalog
+PASS The cafe panel uses the approved light design and its own catalog
+PASS Category filtering and keyboard scans keep the search field
+PASS Basket additions update the basket and retain catalog nodes and payment
+PASS Owner sales remain in their sector and survive panel switches
+PASS Remember opens the last selected owner panel after reload
+PASS The expandable menu fits 320 pixels
+PASS The expandable menu fits 768 pixels
+PASS The expandable menu fits 1024 pixels
+PASS The expandable menu fits 1280 pixels
+PASS The private panel password store remains unchanged across reopen and module use
+PASS Logout removes the retained private frame
+PASS A new client does not read the owner sector data
+PASS Clients see only business controls and no owner or private navigation
+PASS A client cannot open another sector with a forged owner preference or without a license
+PASS The owner package opens a selected sector directly with the same password
+PASS The owner and client panel flows have no page exceptions

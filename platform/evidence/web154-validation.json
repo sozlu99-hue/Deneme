@@ -1,0 +1,238 @@
+{
+  "checkedAt": "2026-10-17T04:55:37.611209+00:00",
+  "webVersion": "1.5.4",
+  "serverPackageVersion": "1.0.3",
+  "baseCommit": "7e339ef4b310ae239d8b8e0baf31f933a68a6495",
+  "cariCommit": "765297e63d1d4d456f860c282662b8efc1a7764e",
+  "apkRebuilt": false,
+  "deliveredPosApkVersion": "1.5.3",
+  "findings": [
+    {
+      "id": "S05-001",
+      "severity": "medium",
+      "status": "fixed",
+      "title": "Device timezone changed business-day and month summaries",
+      "file": "platform/web/pos.js",
+      "line": 49,
+      "before": {
+        "passed": 1,
+        "failed": 3
+      },
+      "after": {
+        "passed": 4,
+        "failed": 0
+      }
+    }
+  ],
+  "platformTests": {
+    "passed": 185,
+    "failed": 0
+  },
+  "serverPersistencePostgresTests": {
+    "passed": 4,
+    "failed": 0
+  },
+  "serverRecoveryTests": {
+    "passed": 16,
+    "failed": 0
+  },
+  "serverCloudPostgresTests": {
+    "passed": 7,
+    "failed": 0
+  },
+  "privatePanelTests": {
+    "passed": 5,
+    "failed": 0
+  },
+  "nativeSqliteHttpTests": {
+    "passed": 1,
+    "failed": 0
+  },
+  "posPackagingTests": {
+    "passed": 15,
+    "failed": 0
+  },
+  "emailAuthMockPassed": true,
+  "gmailProviderMockPassed": true,
+  "browser": {
+    "web": {
+      "passed": 14,
+      "checks": [
+        "The web manifest and installation icon are served by the existing service",
+        "The browser entry opens the existing account login",
+        "The web service worker installs and controls the page",
+        "A simulated dismissed install offer falls back to clear browser instructions",
+        "Login and installation tools fit 320 pixels",
+        "Login and installation tools fit 390 pixels",
+        "Login and installation tools fit 768 pixels",
+        "Login and installation tools fit 1366 pixels",
+        "The existing owner opens the empty market panel with no sample financial records",
+        "Logout clears the remembered account",
+        "Public shell caching contains no account API or private financial response",
+        "Offline reload opens the cached shell and does not invent an account API response",
+        "The same web entry retains the separate staff login",
+        "The tested browser flows produce no page exceptions"
+      ],
+      "pageErrors": []
+    },
+    "panels": {
+      "passed": 28,
+      "checks": [
+        "Panel selection retains the typed login details",
+        "A fresh owner opens the private panel with the server password alone",
+        "The private panel menu button opens the parent menu",
+        "Central login retains the legacy password store",
+        "Settings and sales retain one private frame without a new HTML download",
+        "The four-square menu has all owner panels and closes with Escape",
+        "The menu closes when the owner taps outside it",
+        "The owner opens market without a license and without sample sales",
+        "The owner opens restaurant without a license and without sample sales",
+        "The owner opens cafe without a license and without sample sales",
+        "The market panel uses the approved light design and its own catalog",
+        "The restaurant panel uses the approved light design and its own catalog",
+        "The cafe panel uses the approved light design and its own catalog",
+        "Category filtering and keyboard scans keep the search field",
+        "Basket additions update the basket and retain catalog nodes and payment",
+        "Owner sales remain in their sector and survive panel switches",
+        "Remember opens the last selected owner panel after reload",
+        "The expandable menu fits 320 pixels",
+        "The expandable menu fits 768 pixels",
+        "The expandable menu fits 1024 pixels",
+        "The expandable menu fits 1280 pixels",
+        "The private panel password store remains unchanged across reopen and module use",
+        "Logout removes the retained private frame",
+        "A new client does not read the owner sector data",
+        "Clients see only business controls and no owner or private navigation",
+        "A client cannot open another sector with a forged owner preference or without a license",
+        "The owner package opens a selected sector directly with the same password",
+        "The owner and client panel flows have no page exceptions"
+      ],
+      "pageErrors": []
+    },
+    "cloud": {
+      "passed": 8,
+      "checks": [
+        "Two independent device sessions use the same owner account and market panel",
+        "A product and stock added on the tablet appear on the phone",
+        "A phone sale has one server receipt, one stock deduction and a frozen cost",
+        "A lost success response resolves by its saved operation ID and does not create a second sale",
+        "An offline checkout stays unconfirmed and does not create a sale after reconnect",
+        "Concurrent device checkouts sell the last stock once and retain past sale costs",
+        "Remember and shared sales survive a phone page reload",
+        "Both tested screen sizes have no page exceptions"
+      ],
+      "pageErrors": []
+    },
+    "auth": {
+      "passed": 15,
+      "checks": [
+        "HTML success response is rejected without a session or a role exception",
+        "Broken JSON response is rejected without a session or a role exception",
+        "Missing user response is rejected without a session or a role exception",
+        "Null user response is rejected without a session or a role exception",
+        "False success response is rejected without a session or a role exception",
+        "An undeployed API shows a clear Turkish error",
+        "The recovery form requests a persisted challenge with an isolated mail provider",
+        "An existing emailed code can be entered without requesting another message",
+        "Different new passwords are rejected in the recovery dialog",
+        "Wrong codes show an error inside the recovery dialog",
+        "A valid code changes the password and returns to login",
+        "Password recovery revokes the remembered server session",
+        "The old password no longer works",
+        "The new password works and retains the pending business state",
+        "No page exception in the tested authentication and reset flows"
+      ],
+      "pageErrors": []
+    },
+    "general": {
+      "passed": 26,
+      "checks": [
+        "Business registration and optional unchecked consent",
+        "Pending account cannot open a sales panel",
+        "Approved login opens sales with revenue and two tabs",
+        "Keyboard barcode sale updates revenue and product stock",
+        "No sales summary is sent without consent",
+        "Consented synchronization sends totals only",
+        "Backup file includes the correct stock and frozen sale cost",
+        "Cancellation removes net revenue and restores stock",
+        "Cross-business backup restore is rejected",
+        "An old valid backup cannot overwrite a newer shared ledger",
+        "Remember restores direct sales after reload without saving a password",
+        "Sales and settings fit 320px",
+        "Sales and settings fit 390px",
+        "Sales and settings fit 768px",
+        "Sales and settings fit 1024px",
+        "Sales and settings fit 1280px",
+        "Remember and the cancelled sale survive a Chromium process close and reopen",
+        "Consent withdrawal removes stored server summaries",
+        "Logout clears remembered authentication",
+        "Owner private panel reads the existing local data namespace",
+        "Owner sees business approvals and separate license controls",
+        "cafe activation, recipe purchase, order and sale",
+        "restaurant activation, recipe purchase, order and sale",
+        "Remember keeps the last account and selected panel after a forced crash",
+        "Market cancellation remains after a forced Chromium crash and reopening",
+        "No page exceptions during tested browser flows"
+      ],
+      "pageErrors": []
+    }
+  },
+  "browserChecks": 91,
+  "cari": {
+    "testsPassed": 272,
+    "testsSkipped": 8,
+    "testsFailed": 0,
+    "postgresPassed": 31,
+    "webBrowserPassed": 11,
+    "androidInterfaceBrowserPassed": 11,
+    "packagingPassed": 11,
+    "sourceChanged": false
+  },
+  "realAndroidTested": false,
+  "realIPhoneTested": false,
+  "realBrowserInstallationTested": false,
+  "productionFinancialWrites": false,
+  "sourceHashes": {
+    "platform/web/app.js": "dee7684d46ee0dbf22788c4bf137bc41be69e2c394ec28ef558aeedc8ffdab17",
+    "platform/web/backup-validation.js": "8118711d2be1faeb605d599efc18f98a15bd798434714922588684dca58b5db5",
+    "platform/web/cloud-store.js": "d6e30a9dd367054c163c37b2e0665375c4d7fc008bdc9c65392a8cb8c9559fb0",
+    "platform/web/config.json": "dbb473fd5bf8175d0537b3b0bac152f40eb0a35181ab69d4ae8ae2ea42898eab",
+    "platform/web/cost-engine.js": "b9505172599ad49c5d93c4def4c623e9d6da2e3139fc16ca87cde5085b2038d2",
+    "platform/web/data-integrity.js": "45cd160fb25cba2d87a2d7cc80cf0c0f4b5e178a7e07861bdc672b8d3ad7db70",
+    "platform/web/finance-guard.js": "15a97a8de9c2510b0aaac3d384f2c4019089bb6c08f71d9a9bf6bfb6f3e7736b",
+    "platform/web/icon-512.png": "821f59b15c49d28bf6f6787880efc250cb3a886664089ad7d1ca7b9fe1320cd4",
+    "platform/web/icon.svg": "1524eee5c4d653c0ab78082a6deb2ffdd405c6530b5ccee2367d51d70e4808c3",
+    "platform/web/index.html": "6a9a480e297ef0783f487d48bc9692e4d719009291ff3e2349fc9ef218bd2b61",
+    "platform/web/lease.js": "711419b0ce81ead83949eeed42b6fba055bc7870ecae816aa578e358903dd372",
+    "platform/web/manifest.webmanifest": "4417ab774c262f2ac843dab42712fd06c303644ddae42ad45384a3d68ad024f4",
+    "platform/web/pos.js": "0f61428b0a55393b8ba79483403da36bc59fd1ae502a6680c2cced6d59c5e1e3",
+    "platform/web/private-cloud.js": "d6cceb579395ba6d2b5f20a2fda229547476ead1dd17b71aa93f3bf8c67a1c49",
+    "platform/web/private-ledger.js": "7e48aaee49c01b661a85260b75c5ecc70980d508c514e7f6cfb52d9aa9a303ac",
+    "platform/web/private-menu.js": "b1fdda946fdf70174a946972b8d05c3bd46c0c770aa25848279e41f468c88427",
+    "platform/web/private-offline-store.js": "c5022559035ccd288fa166176c0976d11970c911436303b93697395283879a37",
+    "platform/web/private-products-20261008.png": "837978d201e54373ebd6ff58cfd761063ee517258f20b86aa6d6c186a40b6495",
+    "platform/web/private-theme.css": "8b5fa77513163e57361f964eecda5182c4143dc11dcf88c4e025e224d4bf018c",
+    "platform/web/staff-app.js": "4cbb0e77573a352aac035ab76b336bb49fe1e56a0ac475dd78558aea1de4fdcb",
+    "platform/web/staff-checkout.js": "72cdaf7c5c39a0a8b7881a771035cde4e7260f82974520185b426863ea68eb7d",
+    "platform/web/staff-style.css": "c6b6f1addec7356c8e610bbc25d4739fdc358822598e3fc03480380ca364d1f7",
+    "platform/web/staff.html": "ac4ae8d4024599472df264e052f2577deb6c4cb2cabd5d220160d9addf901f04",
+    "platform/web/store.js": "cddc86e9673c16dc1392ed81cd0a7120345e45389880cdaf44e2ce9f367bbb7e",
+    "platform/web/styles.css": "798f12621a57bbbf525eae322d36818c9f4f52a30e506970ef5ad966f09f5a5d",
+    "platform/web/sw.js": "c2e864ade354202ec693c654b765d6589f93732d20e5fc98adcae36829353289",
+    "platform/web/ui.js": "b277e0d5cbb015434f7a24997b625f219251cd08cecf88fe15f6a9f4360ef9e0",
+    "platform/web/web-install.js": "a949e6888e30c6587ddebcb8aa08ebfdd8c1dacc8b5594c8b6e2276e9e937dc7",
+    "platform/server/cloud-core.mjs": "478d3feeb6db2b9727a9089da595e24849a6a9b5dffe6c670bc7efce99eeb4be",
+    "platform/server/cloud-cost-view.mjs": "741cb1304b3b639b22e36892d54350277774960bd7bc5387fee4c468cd516f45",
+    "platform/server/cloud-repository.mjs": "e0fb03eb4c9b2150cb9b6e9e8f7710cd52028ee87c4b59cb897d7ec3bc4a58b1",
+    "platform/server/dev-server.mjs": "a0572c976d0e0eed6cfbcc270dfa0215b44d2cd3cbef077bba4552f1fdcc14f9",
+    "platform/server/install-platform.mjs": "75e9b372292d1d772dd0e4a970d32f2423c176cc9c6ec82a72d81becb5b7f334",
+    "platform/server/json-value.mjs": "042516a8db5ed8dd1cab5707117eb53961609fd0ce645f702283b7aed3e160ae",
+    "platform/server/legacy-control.mjs": "41beffb48201748eb685a708e37f241ec71ac85b41992977e301a7a761395ce0",
+    "platform/server/platform-core.mjs": "2d180816d053b12799be29d0880b2eb98ba393454d52e43e4864b6930f872c8a",
+    "platform/server/private-engine.mjs": "6721b4aa62925f1580c3b2f71d99468678ba3a69b18bbbedf3b2c5dc1def68d2",
+    "platform/server/private-template.mjs": "1209fdc7cc26599d373888554f8ac225a7b5ecf36d95679793fdd80abf1405fc",
+    "platform/server/sqlite-adapter.mjs": "1cafeb09961eaa60f7504829190c9ac6d3aac6b15011d7ae19a1b5f15bde94d6",
+    "platform/server/staff-access.mjs": "15c7a9c8883003e08c083a529255a26b800ab17135006e75113502860fae03f2",
+    "platform/server/staff-sales.mjs": "45095d701b52326e9621d6a2e1e6955920699658d30d2be7244ded30e478dab9"
+  }
+}

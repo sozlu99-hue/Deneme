@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "checksCount": 3,
+  "checks": [
+    "HTTPS localhost WebView sends login to the configured production API",
+    "HTTPS localhost WebView sends recovery to the configured production API",
+    "Failed login creates no session and no role exception"
+  ],
+  "requests": [
+    {
+      "origin": "https://aesd-server.onrender.com",
+      "path": "/aesd/v1/login"
+    },
+    {
+      "origin": "https://aesd-server.onrender.com",
+      "path": "/aesd/v1/password-reset/request"
+    }
+  ],
+  "pageErrors": [],
+  "android": false,
+  "realEmail": false
+}

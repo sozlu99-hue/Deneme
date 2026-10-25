@@ -1,0 +1,48 @@
+{
+  "checkedAt": "2026-10-09T09:03:42.203333+00:00",
+  "suites": {
+    "platform": {
+      "tests": 169,
+      "pass": 169,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "full-review-unit.tap"
+    },
+    "private_panel": {
+      "tests": 61,
+      "pass": 61,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "full-review-private.tap"
+    },
+    "recovery_isolated_node_sqlite": {
+      "tests": 16,
+      "pass": 16,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "evidence": "full-review-recovery.tap"
+    },
+    "apk_packaging": {
+      "tests": 15,
+      "pass": 15,
+      "fail": 0,
+      "evidence": "apk-packaging-tests.txt"
+    }
+  },
+  "successfulCases": 261,
+  "nodeCases": 246,
+  "newRegressionCases": 42,
+  "nativeHttp": "blocked: listen EPERM 127.0.0.1",
+  "nativeRecovery": "aborted after4cases: better-sqlite3 cleanup assertion on this Node24 test host; the16isolated cases passed with explicit node:sqlite adapter",
+  "browserScreenChecksThisRound": 0,
+  "realAndroid": false,
+  "realIPhone": false,
+  "actualEmailSent": false,
+  "actualSmsSent": false
+}

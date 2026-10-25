@@ -1,0 +1,13 @@
+{
+  "server/platform-core.mjs": "2d180816d053b12799be29d0880b2eb98ba393454d52e43e4864b6930f872c8a",
+  "server/install-platform.mjs": "d761faeaf4a23a28f1a208c1b34f697c6cafe2fbb4e446a1ad6c6502f1fbaba8",
+  "server/private-engine.mjs": "6721b4aa62925f1580c3b2f71d99468678ba3a69b18bbbedf3b2c5dc1def68d2",
+  "server/staff-access.mjs": "15c7a9c8883003e08c083a529255a26b800ab17135006e75113502860fae03f2",
+  "server/staff-sales.mjs": "45095d701b52326e9621d6a2e1e6955920699658d30d2be7244ded30e478dab9",
+  "web/app.js": "c48567c3329d438064b4d57c050af854d615f4aa6820f7ec64c9b7fd5bd8dcf7",
+  "web/staff-app.js": "2326135be8e3cb5aad17949af1b156659b6d52805e2ed73bdb31a0b3457b9dcf",
+  "web/staff-checkout.js": "72cdaf7c5c39a0a8b7881a771035cde4e7260f82974520185b426863ea68eb7d",
+  "web/staff.html": "ac4ae8d4024599472df264e052f2577deb6c4cb2cabd5d220160d9addf901f04",
+  "web/staff-style.css": "c6b6f1addec7356c8e610bbc25d4739fdc358822598e3fc03480380ca364d1f7",
+  "web/sw.js": "85bcbaed718b1c0b02dbedf6b2c1d396846ba2b6033edd5ab9dd1051e8eba599"
+}
